@@ -8,6 +8,7 @@ module PGExtra
   require_relative "core/adapters/postgres"
   require_relative "core/railtie"
   require_relative "core/qualified_name"
+  require_relative "core/registry"
 
   def database
     Adapters::Postgres.new

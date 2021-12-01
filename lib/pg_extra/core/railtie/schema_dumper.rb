@@ -60,5 +60,9 @@ module PGExtra
         stream.puts
       end
     end
+
+    # Prevent indexes and check constraints from being added to the table
+    def indexes_in_create(_table, _stream); end
+    def check_constraints_in_create(_table, _stream); end
   end
 end

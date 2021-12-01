@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  build:
+    name: Ruby ${{ matrix.ruby }}, Rails ${{ matrix.rails }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ["3.0","2.4"]
+        rails: ["5.2", "6.0", "master"]
+        exclude:
+          - ruby: "2.4"
+            rails: "6.0"
+          - ruby: "2.4"
+            rails: "master"
+        include:
+          - rails: "master"
+            continue-on-error: true
+
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: "postgres"
+          POSTGRES_PASSWORD: "postgres"
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      RAILS_VERSION: ${{ matrix.rails }}
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Ruby ${{ matrix.ruby }}
+        uses: ruby/setup-ruby@v1.61.1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+
+      - name: Install dependent libraries
+        run: sudo apt-get install libpq-dev
+
+      - name: Generate lockfile
+        run: bundle lock
+
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: bundle-${{ hashFiles('Gemfile.lock') }}
+
+      - name: Set up PGExtra
+        run: bin/setup
+
+      - name: Check code style
+        run: bundle exec rubocop
+        continue-on-error: ${{ matrix.continue-on-error }}
+
+      - name: Run tests
+        run: bundle exec rake
+        continue-on-error: ${{ matrix.continue-on-error }}

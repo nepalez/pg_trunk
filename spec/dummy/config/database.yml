@@ -1,0 +1,13 @@
+development: &default
+  adapter: postgresql
+  database: pg_extra_dummy_dev
+  encoding: unicode
+  pool: 5
+  <% if ENV.fetch("GITHUB_ACTIONS", false) %>
+  username: <%= ENV.fetch("POSTGRES_USER") %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD") %>
+  <% end %>
+
+test:
+  <<: *default
+  database: pg_extra_dummy_test

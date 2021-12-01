@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+# Add your own tasks in files placed in lib/tasks ending in .rake,
+# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
+
+require File.expand_path("config/application", __dir__)
+
+Rails.application.load_tasks
+
+unless Rake::Task.task_defined?("db:environment:set")
+  desc "dummy task for rails versions where this task does not exist"
+  task "db:environment:set" do
+    # no op
+  end
+end

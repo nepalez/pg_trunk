@@ -1,0 +1,68 @@
+---
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 2.5
+
+Lint/AmbiguousBlockAssociation:
+  IgnoredMethods:
+    - change
+
+Metrics/BlockLength:
+  # these methods should wrap a lot of definitions by design
+  IgnoredMethods:
+    - class_methods
+    - configure
+    - context
+    - describe
+
+Metrics/ClassLength:
+  Exclude:
+    - spec/**/*_spec.rb
+
+# Enable long modules in specs
+Metrics/ModuleLength:
+  Exclude:
+    - spec/**/*_spec.rb
+
+# Start class definitions from inline
+#   private def initialize(...)
+Style/AccessModifierDeclarations:
+  Enabled: false
+
+# Prefer the following style:
+#
+#   module Foo:Bar # directly accessible from Baz
+#     class Baz
+#       # ...
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# The convention is too opinionated
+Style/DocumentDynamicEvalDefinition:
+  Enabled: false
+
+# The convention is too opinionated
+Style/EmptyCaseCondition:
+  Enabled: false
+
+Style/EmptyMethod:
+  EnforcedStyle: compact
+
+Style/ModuleFunction:
+  EnforcedStyle: extend_self
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/WordArray:
+  Exclude:
+    - spec/features/**/*

@@ -6,6 +6,7 @@
 # nodoc
 module PGExtra
   require_relative "core/adapters/postgres"
+  require_relative "core/railtie"
 
   def database
     Adapters::Postgres.new

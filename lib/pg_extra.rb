@@ -12,4 +12,8 @@ module PGExtra
   require_relative "pg_extra/version"
   require_relative "pg_extra/core"
   require_relative "pg_extra/operations"
+
+  def self.database
+    @database ||= Adapters::Postgres.new
+  end
 end

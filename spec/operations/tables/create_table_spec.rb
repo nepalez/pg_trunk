@@ -24,6 +24,8 @@ describe ActiveRecord::Migration, "#create_table" do
         end
 
         add_index "users", ["role_id"], name: "index_users_on_role_id"
+
+        add_check_constraint "users", "length((name)::text) > 2"
       RUBY
     end
 

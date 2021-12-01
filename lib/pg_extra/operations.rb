@@ -8,5 +8,6 @@ module PGExtra
     # in this order independent objects will be dumped to the schema.
     require_relative "operations/tables"
     require_relative "operations/indexes"
+    require_relative "operations/check_constraints"
   end
 end

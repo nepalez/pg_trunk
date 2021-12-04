@@ -10,6 +10,7 @@ module PGExtra
   require_relative "core/qualified_name"
   require_relative "core/registry"
   require_relative "core/serializers"
+  require_relative "core/validators"
   require_relative "core/operation"
 
   def database

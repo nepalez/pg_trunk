@@ -3,6 +3,7 @@
 require_relative "operation/callbacks"
 require_relative "operation/attributes"
 require_relative "operation/generators"
+require_relative "operation/validations"
 
 module PGExtra
   # @api private
@@ -13,6 +14,7 @@ module PGExtra
     include Attributes
     include Generators
     include Comparable
+    include Validations
 
     attribute :comment, :string, desc: \
               "The comment to the object"
@@ -30,6 +32,10 @@ module PGExtra
               "The oid of the database object"
     attribute :version, :integer, aliases: :revert_to_version, desc: \
               "The version of the SQL snippet"
+
+    validates :name, presence: true
+    validates :new_name, "PGExtra/difference": { from: :name }, allow_nil: true
+    validates :force, inclusion: { in: %i[cascade restrict] }, allow_nil: true
 
     protected
 

@@ -30,6 +30,13 @@ module PGExtra
         end
       end
 
+      # Execute operation by its definition
+      # @param [Class < PgExtra::Operation] operation
+      def execute_operation(operation)
+        query = operation.to_sql(server_version)
+        connection.execute(query) if query
+      end
+
       private
 
       attr_reader :connectable

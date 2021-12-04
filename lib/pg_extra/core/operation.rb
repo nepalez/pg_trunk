@@ -7,6 +7,7 @@ require_relative "operation/validations"
 require_relative "operation/inversion"
 require_relative "operation/ruby_builder"
 require_relative "operation/ruby_helpers"
+require_relative "operation/sql_helpers"
 
 module PGExtra
   # @api private
@@ -20,6 +21,7 @@ module PGExtra
     include Validations
     include Inversion
     include RubyHelpers
+    include SQLHelpers
 
     attribute :comment, :string, desc: \
               "The comment to the object"

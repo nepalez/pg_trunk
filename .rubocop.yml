@@ -7,6 +7,10 @@ Lint/AmbiguousBlockAssociation:
   IgnoredMethods:
     - change
 
+# Enable long'n'complex methods in operations
+# because we made those definitions using a DSL
+# which 'regularizes' a code, so we can afford that complexity.
+
 Metrics/BlockLength:
   # these methods should wrap a lot of definitions by design
   IgnoredMethods:
@@ -15,10 +19,29 @@ Metrics/BlockLength:
     - context
     - describe
     - define
+  Exclude:
+    - lib/pg_extra/operations/**/*.rb
+
+Metrics/AbcSize:
+  Exclude:
+    - lib/pg_extra/operations/**/*.rb
 
 Metrics/ClassLength:
   Exclude:
     - spec/**/*_spec.rb
+    - lib/pg_extra/operations/**/*.rb
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - lib/pg_extra/operations/**/*.rb
+
+Metrics/MethodLength:
+  Exclude:
+    - lib/pg_extra/operations/**/*.rb
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - lib/pg_extra/operations/**/*.rb
 
 # Enable long modules in specs
 Metrics/ModuleLength:

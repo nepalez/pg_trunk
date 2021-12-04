@@ -2,6 +2,7 @@
 
 require_relative "operation/callbacks"
 require_relative "operation/attributes"
+require_relative "operation/generators"
 
 module PGExtra
   # @api private
@@ -10,15 +11,24 @@ module PGExtra
   class Operation
     include Callbacks
     include Attributes
+    include Generators
 
-    attribute :comment, :string
-    attribute :force, :pg_extra_symbol
-    attribute :if_exists, :boolean
-    attribute :if_not_exists, :boolean
-    attribute :name, :pg_extra_qualified_name
-    attribute :new_name, :pg_extra_qualified_name, aliases: :to
-    attribute :oid, :integer
-    attribute :version, :integer, aliases: :revert_to_version
+    attribute :comment, :string, desc: \
+              "The comment to the object"
+    attribute :force, :pg_extra_symbol, desc: \
+              "How to process dependent objects"
+    attribute :if_exists, :boolean, desc: \
+              "Don't fail if the object is absent"
+    attribute :if_not_exists, :boolean, desc: \
+              "Don't fail if the object is already present"
+    attribute :name, :pg_extra_qualified_name, desc: \
+              "The qualified name of the object"
+    attribute :new_name, :pg_extra_qualified_name, aliases: :to, desc: \
+              "The new name of the object to rename to"
+    attribute :oid, :integer, desc: \
+              "The oid of the database object"
+    attribute :version, :integer, aliases: :revert_to_version, desc: \
+              "The version of the SQL snippet"
 
     private
 

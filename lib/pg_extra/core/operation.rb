@@ -5,6 +5,8 @@ require_relative "operation/attributes"
 require_relative "operation/generators"
 require_relative "operation/validations"
 require_relative "operation/inversion"
+require_relative "operation/ruby_builder"
+require_relative "operation/ruby_helpers"
 
 module PGExtra
   # @api private
@@ -17,6 +19,7 @@ module PGExtra
     include Comparable
     include Validations
     include Inversion
+    include RubyHelpers
 
     attribute :comment, :string, desc: \
               "The comment to the object"
@@ -38,6 +41,9 @@ module PGExtra
     validates :name, presence: true
     validates :new_name, "PGExtra/difference": { from: :name }, allow_nil: true
     validates :force, inclusion: { in: %i[cascade restrict] }, allow_nil: true
+
+    # By default ruby methods take the object name as a positional argument.
+    ruby_params :name
 
     protected
 

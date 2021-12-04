@@ -4,6 +4,7 @@ require_relative "operation/callbacks"
 require_relative "operation/attributes"
 require_relative "operation/generators"
 require_relative "operation/validations"
+require_relative "operation/inversion"
 
 module PGExtra
   # @api private
@@ -15,6 +16,7 @@ module PGExtra
     include Generators
     include Comparable
     include Validations
+    include Inversion
 
     attribute :comment, :string, desc: \
               "The comment to the object"

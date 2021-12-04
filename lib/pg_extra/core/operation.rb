@@ -1,11 +1,12 @@
 # frozen_string_literal: false
 
+require_relative "operation/callbacks"
+
 module PGExtra
   # @api private
   # Base class for operations.
   # Inherit this class to define new operation.
-  # rubocop: disable Lint/EmptyClass
   class Operation
+    include Callbacks
   end
-  # rubocop: enable Lint/EmptyClass
 end

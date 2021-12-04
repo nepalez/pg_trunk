@@ -12,6 +12,7 @@ module PGExtra
     include Callbacks
     include Attributes
     include Generators
+    include Comparable
 
     attribute :comment, :string, desc: \
               "The comment to the object"
@@ -29,6 +30,15 @@ module PGExtra
               "The oid of the database object"
     attribute :version, :integer, aliases: :revert_to_version, desc: \
               "The version of the SQL snippet"
+
+    protected
+
+    # Define the order of objects
+    # @param [PGExtra::Definitions]
+    # @return [-1, 0, 1, nil]
+    def <=>(other)
+      name <=> other.name if other.is_a?(self.class)
+    end
 
     private
 

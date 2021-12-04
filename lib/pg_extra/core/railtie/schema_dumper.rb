@@ -9,6 +9,10 @@ module PGExtra
       def operations
         @operations ||= []
       end
+
+      def register(operation)
+        operations << operation unless operations.include?(operation)
+      end
     end
 
     # Here we totally redefining the way a schema is dumped.

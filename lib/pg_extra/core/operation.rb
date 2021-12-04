@@ -8,6 +8,7 @@ require_relative "operation/inversion"
 require_relative "operation/ruby_builder"
 require_relative "operation/ruby_helpers"
 require_relative "operation/sql_helpers"
+require_relative "operation/registration"
 
 module PGExtra
   # @api private
@@ -22,6 +23,7 @@ module PGExtra
     include Inversion
     include RubyHelpers
     include SQLHelpers
+    include Registration
 
     attribute :comment, :string, desc: \
               "The comment to the object"

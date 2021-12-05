@@ -12,6 +12,7 @@ module PGExtra
   require_relative "core/serializers"
   require_relative "core/validators"
   require_relative "core/operation"
+  require_relative "core/dependencies_resolver"
 
   def database
     Adapters::Postgres.new

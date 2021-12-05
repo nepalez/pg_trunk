@@ -20,4 +20,9 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  # Filter examples by server version
+  server_version = PGExtra.database.server_version.first(2).to_i
+  config.filter_run_excluding(before_version: ->(v) { v <= server_version })
+  config.filter_run_excluding(since_version: ->(v) { v > server_version })
 end

@@ -10,30 +10,37 @@ on:
 
 jobs:
   build:
-    name: Ruby ${{ matrix.ruby }}, Rails ${{ matrix.rails }}
+    name: Ruby ${{ matrix.ruby }}, Rails ${{ matrix.rails }}, PostgreSQL ${{ matrix.postgres }}
 
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
-        ruby: ["3.0","2.4"]
-        rails: ["5.2", "6.0", "master"]
-        exclude:
-          - ruby: "2.4"
-            rails: "6.0"
-          - ruby: "2.4"
-            rails: "master"
-        include:
-          - rails: "master"
-            continue-on-error: true
+        ruby:
+          - "3.0"
+        rails:
+          - "7.0"
+        postgres:
+          - 10
+          - 11
+          - 12
+          - 13
+          - 14
+        include: # for backward-compatibility
+          - ruby: "2.7"
+            rails: "5.2"
+            postgres: 10
+          - ruby: "3.0"
+            rails: "6.1"
+            postgres: 10
 
     runs-on: ubuntu-latest
 
     services:
       postgres:
-        image: postgres
+        image: postgres:${{ matrix.postgres }}
         env:
-          POSTGRES_USER: "postgres"
-          POSTGRES_PASSWORD: "postgres"
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
         options: >-
@@ -73,8 +80,8 @@ jobs:
 
       - name: Check code style
         run: bundle exec rubocop
-        continue-on-error: ${{ matrix.continue-on-error }}
+        continue-on-error: false
 
       - name: Run tests
-        run: bundle exec rake
-        continue-on-error: ${{ matrix.continue-on-error }}
+        run: bundle exec rake --trace
+        continue-on-error: false

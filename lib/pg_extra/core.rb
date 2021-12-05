@@ -5,4 +5,9 @@
 
 # nodoc
 module PGExtra
+  require_relative "core/adapters/postgres"
+
+  def database
+    Adapters::Postgres.new
+  end
 end

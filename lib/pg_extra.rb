@@ -16,4 +16,8 @@ module PGExtra
   def self.database
     @database ||= Adapters::Postgres.new
   end
+
+  def self.dumper
+    @dumper ||= database.dumper
+  end
 end

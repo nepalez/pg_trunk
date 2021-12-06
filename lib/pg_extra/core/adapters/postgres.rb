@@ -23,10 +23,22 @@ module PGExtra
       #
       # @api private
       class Connection < SimpleDelegator
-        include ActiveRecord::ConnectionAdapters::SchemaStatements
-
         def server_version
           raw_connection.server_version.to_s
+        end
+
+        # Expose private method helpers
+
+        def check_constraint_name(table, expression)
+          __getobj__.send(
+            :check_constraint_name,
+            table,
+            expression: expression,
+          )
+        end
+
+        def strip_table_name(table)
+          __getobj__.send(:strip_table_name_prefix_and_suffix, table)
         end
       end
 
@@ -35,6 +47,14 @@ module PGExtra
       def execute_operation(operation)
         query = operation.to_sql(server_version)
         connection.execute(query) if query
+      end
+
+      def dumper
+        # This instance is used to dump the table
+        # using its name extracted from the database.
+        # That's why we can skip prefix/suffix definitions
+        # in the parameters of the constructor.
+        @dumper ||= connection.create_schema_dumper({})
       end
 
       private

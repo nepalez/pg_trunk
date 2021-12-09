@@ -6,6 +6,7 @@ module PGExtra
   module Operations
     # The order of requirements is essential:
     # in this order independent objects will be dumped to the schema.
+    require_relative "operations/enums"
     require_relative "operations/tables"
     require_relative "operations/views"
     require_relative "operations/materialized_views"

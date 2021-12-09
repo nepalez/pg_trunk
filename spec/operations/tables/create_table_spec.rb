@@ -22,6 +22,8 @@ describe ActiveRecord::Migration, "#create_table" do
           t.integer "role_id"
           t.string "name"
         end
+
+        add_index "users", ["role_id"], name: "index_users_on_role_id"
       RUBY
     end
 

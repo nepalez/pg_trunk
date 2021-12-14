@@ -11,5 +11,6 @@ module PGExtra
     require_relative "operations/indexes"
     require_relative "operations/check_constraints"
     require_relative "operations/foreign_keys"
+    require_relative "operations/procedures"
   end
 end

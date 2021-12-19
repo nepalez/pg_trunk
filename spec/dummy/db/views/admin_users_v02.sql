@@ -1,0 +1,1 @@
+SELECT NULL::bigint AS id, name FROM users WHERE admin;

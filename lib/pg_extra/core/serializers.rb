@@ -4,6 +4,7 @@ module PGExtra
   # Namespace for the gem-specific activemodel serializers
   module Serializers
     require_relative "serializers/array_serializer"
+    require_relative "serializers/array_of_hashes_serializer"
     require_relative "serializers/array_of_strings_serializer"
     require_relative "serializers/array_of_symbols_serializer"
     require_relative "serializers/lowercase_string_serializer"

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 # nodoc
-module PGExtra::Definitions
+module PGExtra::Operations
+  # @private
   # Namespace for operations with functions
   module Enums
     require_relative "enums/change"

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PGExtra::Operation
+  # @private
   # The exception to be thrown when reversed migration isn't valid
   class IrreversibleMigration < ActiveRecord::IrreversibleMigration
     private
@@ -48,14 +49,17 @@ class PGExtra::Operation
     end
   end
 
+  # @private
   # Enable operations to be invertible
   module Inversion
+    # @private
     def invert!
       invert&.tap do |i|
         i.valid? || raise(IrreversibleMigration.new(self, i, *i.error_messages))
       end
     end
 
+    # @private
     def irreversible!(option)
       raise IrreversibleMigration.new(self, nil, <<~MSG.squish)
         The operation with the `#{option}` option cannot be reversed

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module PGExtra
+  # @private
   # Namespace for the gem-specific activemodel serializers
   module Serializers
     require_relative "serializers/array_serializer"

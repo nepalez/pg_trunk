@@ -8,6 +8,22 @@ For a complete changelog, see the [commits] for each version via the version lin
 
 This is a first public release (nepalez)
 
+Supported features:
+
+- tables
+- indexes (separated from tables)
+- check constraints (separated from tables)
+- foreign keys (including multi-column ones)
+- views
+- materialized views
+- functions
+- procedures
+- triggers
+- custom statistics
+- enumerable types
+- composite types
+- domains types
+
 [0.1.0]: https://github.com/nepalez/pg_extra/releases/tag/v0.1.0
 
 [Keep a Changelog]: http://keepachangelog.com/

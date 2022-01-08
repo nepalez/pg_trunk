@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# nodoc
+# @private
 module PGExtra::Serializers
-  # @api private
+  # @private
   # Cast the attribute value as a qualified name.
   class QualifiedNameSerializer < ActiveRecord::Type::Value
     TYPE = ::PGExtra::QualifiedName

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# nodoc
+# @private
 module PGExtra::Serializers
-  # @api private
+  # @private
   # Cast the attribute value as a symbol.
   class SymbolSerializer < ActiveRecord::Type::Value
     def cast(value)

@@ -14,6 +14,7 @@ module PGExtra
   require_relative "core/operation"
   require_relative "core/dependencies_resolver"
 
+  # @private
   def database
     Adapters::Postgres.new
   end

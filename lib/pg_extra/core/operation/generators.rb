@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PGExtra::Operation
+  # @private
   # Register attributes definition for later usage by generators
   module Generators
     extend ActiveSupport::Concern

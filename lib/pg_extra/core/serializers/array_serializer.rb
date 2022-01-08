@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# nodoc
+# @private
 module PGExtra::Serializers
-  # @api private
+  # @private
   # Cast the attribute value as an array, not caring about its content.
   class ArraySerializer < ActiveRecord::Type::Value
     def cast(value)

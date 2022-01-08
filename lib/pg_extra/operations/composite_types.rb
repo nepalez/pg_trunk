@@ -2,6 +2,7 @@
 
 # nodoc
 module PGExtra::Operations
+  # @private
   # Definitions for composite types
   module CompositeTypes
     require_relative "composite_types/column"

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PGExtra::Operation
+  # @private
   # Define getters/setters for the operation attributes
   module Attributes
     extend ActiveSupport::Concern

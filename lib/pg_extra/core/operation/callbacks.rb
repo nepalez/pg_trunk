@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PGExtra::Operation
+  # @private
   # Enable to fulfill/generate missed attributes
   # using the `after_initialize` callback.
   #

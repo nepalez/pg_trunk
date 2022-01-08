@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module PGExtra
+  # @private
   # Resolve dependencies between inter-dependent objects,
   # identified by database `#oid` and comparable to each other.
   #

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PGExtra::Operation
+  # @private
   # Invoke all the necessary definitions
   # in the modules included to Rails via Railtie
   module Registration

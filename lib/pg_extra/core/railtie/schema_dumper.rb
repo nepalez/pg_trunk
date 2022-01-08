@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module PGExtra
-  # @api private
+  # @private
   # Overloads methods defined in ActiveRecord::SchemaDumper
   # to redefine how various objects must be dumped.
   module SchemaDumper

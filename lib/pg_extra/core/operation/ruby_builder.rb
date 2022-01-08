@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PGExtra::Operation
+  # @private
   # Build ruby snippet
   class RubyBuilder
     private def initialize(name, shortage: nil)

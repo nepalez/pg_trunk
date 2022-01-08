@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module PGExtra
+  # @private
   # The module record commands done during a migration.
   module CommandRecorder
     # @param [PGExtra::Operation] klass

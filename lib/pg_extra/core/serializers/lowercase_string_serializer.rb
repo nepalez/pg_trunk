@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# nodoc
+# @private
 module PGExtra::Serializers
-  # @api private
+  # @private
   # Cast the attribute value as a non-empty stripped string in lowercase
   class LowercaseStringSerializer < ActiveRecord::Type::Value
     def cast(value)

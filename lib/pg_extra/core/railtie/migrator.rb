@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module PGExtra
+  # @private
   # This module extends the ActiveRecord::Migrator
   # to clean the gem-specific registry `pg_extra`:
   #

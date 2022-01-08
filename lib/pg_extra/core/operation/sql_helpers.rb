@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PGExtra::Operation
+  # @private
   # Add helpers for building SQL queries
   module SQLHelpers
     extend ActiveSupport::Concern

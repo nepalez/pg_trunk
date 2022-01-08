@@ -11,7 +11,7 @@ require_relative "operation/sql_helpers"
 require_relative "operation/registration"
 
 module PGExtra
-  # @api private
+  # @private
   # Base class for operations.
   # Inherit this class to define new operation.
   class Operation

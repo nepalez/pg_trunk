@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PGExtra::Operation
+  # @private
   # Helpers to build ruby snippet from the operation definition
   module RubyHelpers
     extend ActiveSupport::Concern
@@ -68,7 +69,7 @@ class PGExtra::Operation
       end
     end
 
-    # @api private
+    # @private
     # Ruby snippet to dump the creator
     # @return [String]
     def to_ruby

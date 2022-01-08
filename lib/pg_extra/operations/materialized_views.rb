@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 # nodoc
-module PGExtra::Definitions
+module PGExtra::Operations
+  # @private
   # Namespace for operations with materialized views
   module MaterializedViews
     require_relative "materialized_views/column"

@@ -3,7 +3,7 @@
 require "rails/generators"
 require "rails/generators/active_record"
 
-# @api private
+# @private
 # @abstract
 # Module to build object-specific generators
 module PGExtra::Generators

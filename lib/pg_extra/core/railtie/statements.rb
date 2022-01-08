@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module PGExtra
+  # @private
   # The module adds commands to execute DDL operations in PostgreSQL.
   module Statements
     # @param [PGExtra::Operation] klass

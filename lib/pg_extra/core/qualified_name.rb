@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module PGExtra
+  # @private
   # The qualified name of an object consists from schema (namespace) and name.
   # The class contains several helper methods for ruby and sql snippets.
   QualifiedName = Struct.new(:schema, :name) do

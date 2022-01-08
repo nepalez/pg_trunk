@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# @private
 # Ensure that all items in the array are valid
 class PGExtra::AllItemsValidValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)

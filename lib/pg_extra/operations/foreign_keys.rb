@@ -2,6 +2,7 @@
 
 # nodoc
 module PGExtra::Operations
+  # @private
   # Definitions for foreign keys
   #
   # We overload only add/drop operations to support features

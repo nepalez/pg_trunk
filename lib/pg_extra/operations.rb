@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
+# @private
 module PGExtra
-  # @api private
   # Namespace for creator definitions and their fetchers
   module Operations
     # The order of requirements is essential:

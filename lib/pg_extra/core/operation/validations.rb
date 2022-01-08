@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PGExtra::Operation
+  # @private
   # Enable validation of the operation in the Rails way
   module Validations
     extend ActiveSupport::Concern

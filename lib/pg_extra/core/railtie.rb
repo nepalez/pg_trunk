@@ -2,6 +2,7 @@
 
 # nodoc
 module PGExtra
+  # @private
   # Turn in PGExtra-relates stuff in the Rails app
   class Railtie < Rails::Railtie
     require_relative "railtie/command_recorder"

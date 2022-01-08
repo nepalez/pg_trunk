@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module PGExtra
+  # @private
   # PGExtra database adapters.
   #
   # PGExtra ships with a Postgres adapter only,
@@ -21,7 +22,7 @@ module PGExtra
       # Rails where they are available and public before falling back to our own
       # implementations for older Rails versions.
       #
-      # @api private
+      # @private
       class Connection < SimpleDelegator
         def server_version
           raw_connection.server_version.to_s

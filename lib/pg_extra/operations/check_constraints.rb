@@ -2,6 +2,7 @@
 
 # nodoc
 module PGExtra::Operations
+  # @private
   # Definitions for check constraints
   module CheckConstraints
     require_relative "check_constraints/base"

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# nodoc
+# @private
 module PGExtra::Serializers
-  # @api private
+  # @private
   # Cast the attribute value as an array of strings.
   # It knows how to cast arrays returned by PostgreSQL
   # as a string like '{USD,EUR,GBP}' into ['USD', 'EUR', 'GBP'].

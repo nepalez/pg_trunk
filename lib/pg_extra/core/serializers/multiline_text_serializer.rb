@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# nodoc
+# @private
 module PGExtra::Serializers
-  # @api private
+  # @private
   # Cast the attribute value as a multiline text
   # with right-stripped lines and without empty lines.
   class MultilineTextSerializer < ActiveRecord::Type::Value

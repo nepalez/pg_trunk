@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module PGExtra
+  # @private
   # The module goes around the ActiveRecord::Migration's `method_missing`.
   #
   # This is necessary because +ActiveRecord::Migration#method_missing+

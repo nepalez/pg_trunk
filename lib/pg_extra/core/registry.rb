@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module PGExtra
+  # @private
   # The internal model to represent the gem-specific registry
   # where we store information about objects added by migrations.
   #

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# @private
 # Ensure that an attribute is different from another one
 class PGExtra::DifferenceValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)

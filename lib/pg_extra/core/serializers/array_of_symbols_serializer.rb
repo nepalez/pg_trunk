@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# nodoc
+# @private
 module PGExtra::Serializers
-  # @api private
+  # @private
   # The same as the array of strings with symbolization at the end
   class ArrayOfSymbolsSerializer < ActiveRecord::Type::Value
     def cast(value)

@@ -32,6 +32,7 @@ module PGExtra
     # Instead of it, we fetch object definitions from the database,
     # and then resolve their inter-dependencies.
     def dump(stream)
+      pg_extra_register_custom_types
       header(stream)
       extensions(stream)
       pg_extra_objects(stream)
@@ -40,6 +41,12 @@ module PGExtra
     end
 
     private
+
+    # Before dumping the schema extract from SQL all custom types
+    # to enable their usage in table columns in the schema.
+    def pg_extra_register_custom_types
+      @connection.enable_pg_extra_types
+    end
 
     def pg_extra_objects(stream)
       # Fetch operation definitions from the database.

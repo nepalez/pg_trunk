@@ -20,28 +20,28 @@ Metrics/BlockLength:
     - describe
     - define
   Exclude:
-    - lib/pg_extra/operations/**/*.rb
+    - lib/pg_trunk/operations/**/*.rb
 
 Metrics/AbcSize:
   Exclude:
-    - lib/pg_extra/operations/**/*.rb
+    - lib/pg_trunk/operations/**/*.rb
 
 Metrics/ClassLength:
   Exclude:
     - spec/**/*_spec.rb
-    - lib/pg_extra/operations/**/*.rb
+    - lib/pg_trunk/operations/**/*.rb
 
 Metrics/CyclomaticComplexity:
   Exclude:
-    - lib/pg_extra/operations/**/*.rb
+    - lib/pg_trunk/operations/**/*.rb
 
 Metrics/MethodLength:
   Exclude:
-    - lib/pg_extra/operations/**/*.rb
+    - lib/pg_trunk/operations/**/*.rb
 
 Metrics/PerceivedComplexity:
   Exclude:
-    - lib/pg_extra/operations/**/*.rb
+    - lib/pg_trunk/operations/**/*.rb
 
 # Enable long modules in specs
 Metrics/ModuleLength:

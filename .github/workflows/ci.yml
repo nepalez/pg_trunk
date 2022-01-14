@@ -75,7 +75,7 @@ jobs:
           path: vendor/bundle
           key: bundle-${{ hashFiles('Gemfile.lock') }}
 
-      - name: Set up PGExtra
+      - name: Set up PGTrunk
         run: bin/setup
 
       - name: Check code style

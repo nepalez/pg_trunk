@@ -1,4 +1,4 @@
-# PGExtra
+# PGTrunk
 
 Empower PostgreSQL migrations in Rails app
 
@@ -8,11 +8,11 @@ Empower PostgreSQL migrations in Rails app
 [![Gem Version][gem-badger]][gem]
 [![Build Status][build-badger]][build]
 
-PGExtra adds methods to `ActiveRecord::Migration` to create and manage
+PGTrunk adds methods to `ActiveRecord::Migration` to create and manage
 various PostgreSQL objects (like views, functions, triggers, statistics, types etc.)
 in Rails.
 
-This gem is greatly influenced by the [Scenic] and [F(x)] projects
+This gem is greatly influenced by the [Scenic], [F(x)] and [ActiveRecord::PostgtresEnum] projects
 but takes some steps further.
 
 In addition to support of different objects, we are solving a problem of interdependency between them.
@@ -51,7 +51,7 @@ Notice, that we had to separate definitions of indexes and check constraints fro
 because there can be other objects (like functions or types) squeezing between them.
 
 Another difference from aforementioned gems is that we explicitly register
-all objects created by migrations in the special table (`pg_extra`).
+all objects created by migrations in the special table (`pg_trunk`).
 This let us distinct objects created by "regular" migration from temporary ones
 added manually and exclude the latter from the schema. We bind any object
 to a particular version of migration which added it. That's how only those
@@ -95,7 +95,7 @@ You can find the necessary details in the gem's [wiki].
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'pg_extra'
+gem 'pg_trunk'
 ```
 
 And then execute:
@@ -107,13 +107,13 @@ $ bundle install
 Or install it yourself as:
 
 ```shell
-$ gem install pg_extra
+$ gem install pg_trunk
 ```
 
 Add the line somewhere in your ruby code:
 
 ```ruby
-require "pg_extra"
+require "pg_trunk"
 ```
 
 ## Development
@@ -124,17 +124,18 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at `https://github.com/nepalez/pg_extra`.
+Bug reports and pull requests are welcome on GitHub at `https://github.com/nepalez/pg_trunk`.
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License].
 
-[build-badger]: https://github.com/nepalez/pg_extra/workflows/CI/badge.svg
-[build]: https://github.com/nepalez/pg_extra/actions?query=workflow%3ACI+branch%3Amaster
-[gem-badger]: https://img.shields.io/gem/v/pg_extra.svg?style=flat
-[gem]: https://rubygems.org/gems/pg_extra
+[build-badger]: https://github.com/nepalez/pg_trunk/workflows/CI/badge.svg
+[build]: https://github.com/nepalez/pg_trunk/actions?query=workflow%3ACI+branch%3Amaster
+[gem-badger]: https://img.shields.io/gem/v/pg_trunk.svg?style=flat
+[gem]: https://rubygems.org/gems/pg_trunk
 [MIT License]: https://opensource.org/licenses/MIT
 [Scenic]: https://github.com/scenic-views/scenic
 [F(x)]: https://github.com/teoljungberg/fx
-[wiki]: https://github.com/nepalez/pg_extra/wiki
+[ActiveRecord::PostgtresEnum]: https://github.com/bibendi/activerecord-postgres_enum
+[wiki]: https://github.com/nepalez/pg_trunk/wiki

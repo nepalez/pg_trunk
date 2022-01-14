@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in pg_extra.gemspec
+# Specify your gem's dependencies in pg_trunk.gemspec
 gemspec
 
 gem "appraisal", "~> 2.3.0"

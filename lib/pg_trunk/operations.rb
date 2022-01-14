@@ -15,6 +15,7 @@ module PGTrunk
     require_relative "operations/materialized_views"
     require_relative "operations/functions"
     require_relative "operations/indexes"
+    require_relative "operations/aggregates"
     require_relative "operations/check_constraints"
     require_relative "operations/foreign_keys"
     require_relative "operations/procedures"

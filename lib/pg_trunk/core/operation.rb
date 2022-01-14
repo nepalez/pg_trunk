@@ -52,7 +52,7 @@ module PGTrunk
     protected
 
     # Define the order of objects
-    # @param [PGTrunk::Definitions]
+    # @param [PGTrunk::Operation]
     # @return [-1, 0, 1, nil]
     def <=>(other)
       name <=> other.name if other.is_a?(self.class)

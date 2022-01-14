@@ -10,7 +10,7 @@ module PGTrunk
   # - independent objects keeps their original order.
   #
   # We have no expectations about the natural order here.
-  # @see [PGTrunk::ObjectDefinitions::Operation]
+  # @see [PGTrunk::Operation]
   class DependenciesResolver
     class << self
       # Resolve dependencies between objects

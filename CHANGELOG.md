@@ -4,7 +4,7 @@ The noteworthy changes for each PGTrunk version are included here.
 The format is based on [Keep a Changelog] and this project adheres to [Semantic Versioning].
 For a complete changelog, see the [commits] for each version via the version links.
 
-## [0.1.0] (To be released)
+## [0.1.0] (2022-01-14)
 
 This is a first public release (nepalez)
 

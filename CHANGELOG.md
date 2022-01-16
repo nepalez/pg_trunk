@@ -4,9 +4,13 @@ The noteworthy changes for each PGTrunk version are included here.
 The format is based on [Keep a Changelog] and this project adheres to [Semantic Versioning].
 For a complete changelog, see the [commits] for each version via the version links.
 
+## [0.1.2] (2022-01-17)
+
+* Fix registry of custom types (nepalez)
+
 ## [0.1.1] (2022-01-16)
 
-* Fix inline documentation for methods added to ActiveRecord::Migration
+* Fix inline documentation for methods added to ActiveRecord::Migration (nepalez)
 
 ## [0.1.0] (2022-01-14)
 

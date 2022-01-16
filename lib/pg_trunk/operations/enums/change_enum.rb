@@ -12,17 +12,19 @@
 #     # The operation can be used to rename or add values to the
 #     # enumerated type. The commend can be changed as well.
 #     #
-#     #   change_enum "currencies" do |e|
-#     #     e.add_value "EUR", after: "BTC"
-#     #     e.add_value "GBP", before: "usd"
-#     #     e.add_value "JPY" # to the end of the list
-#     #     e.rename_value "usd", to: "USD"
-#     #     e.comment <<~COMMENT, from: <<~COMMENT
-#     #       Supported currencies
-#     #     COMMENT
-#     #       Currencies
-#     #     COMMENT
-#     #   end
+#     # ```ruby
+#     # change_enum "currencies" do |e|
+#     #   e.add_value "EUR", after: "BTC"
+#     #   e.add_value "GBP", before: "usd"
+#     #   e.add_value "JPY" # to the end of the list
+#     #   e.rename_value "usd", to: "USD"
+#     #   e.comment <<~COMMENT, from: <<~COMMENT
+#     #     Supported currencies
+#     #   COMMENT
+#     #     Currencies
+#     #   COMMENT
+#     # end
+#     # ```
 #     #
 #     # Please, keep in mind that all values will be added before
 #     # the first rename. That's why you should use old values

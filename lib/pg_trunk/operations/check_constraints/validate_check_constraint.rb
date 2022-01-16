@@ -13,13 +13,17 @@
 #     #
 #     # The invalid constraint can be identified by table and explicit name:
 #     #
-#     #   validate_check_constraint :users, name: "phone_is_long_enough"
+#     # ```ruby
+#     # validate_check_constraint :users, name: "phone_is_long_enough"
+#     # ```
 #     #
 #     # Alternatively it can be specified by expression. In this case
 #     # you must ensure the expression has the same form as it is stored
 #     # in the database (after parsing the source).
 #     #
-#     #   validate_check_constraint :users, "length((phone::text) > 10)"
+#     # ```ruby
+#     # validate_check_constraint :users, "length((phone::text) > 10)"
+#     # ```
 #     #
 #     # Notice that it is invertible but the inverted operation does nothing.
 #     def validate_check_constraint(table, expression = nil, **options, &block); end

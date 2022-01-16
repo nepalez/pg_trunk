@@ -13,11 +13,15 @@
 #     #
 #     # If there are no overloaded functions, then you can use a plain name:
 #     #
-#     #   rename_function "math.multiply", to: "public.product"
+#     # ```ruby
+#     # rename_function "math.multiply", to: "public.product"
+#     # ```
 #     #
 #     # otherwise the types of attributes must be explicitly specified.
 #     #
-#     #   rename_function "math.multiply(int, int)", to: "public.product"
+#     # ```ruby
+#     # rename_function "math.multiply(int, int)", to: "public.product"
+#     # ```
 #     #
 #     # Any specification of attributes or returned values in `to:` option
 #     # is ignored because they cannot be changed anyway.

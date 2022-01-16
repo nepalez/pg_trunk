@@ -17,17 +17,23 @@
 #     #
 #     # You can rename the foreign key constraint identified by its explicit name:
 #     #
-#     #   rename_foreign_key :users,
-#     #                      name: "user_roles_fk",
-#     #                      to: "constraints.users_by_roles_fk"
+#     # ```ruby
+#     # rename_foreign_key :users,
+#     #                    name: "user_roles_fk",
+#     #                    to: "constraints.users_by_roles_fk"
+#     # ```
 #     #
 #     # The key can also be found in the database by table/reference/columns/pk
 #     #
-#     #   rename_foreign_key :users, :roles, primary_key: "name", to: "user_roles"
+#     # ```ruby
+#     # rename_foreign_key :users, :roles, primary_key: "name", to: "user_roles"
+#     # ```
 #     #
 #     # If a new name is missed, then the name will be reset to the auto-generated one:
 #     #
-#     #   rename_foreign_key :users, "user_roles_fk"
+#     # ```ruby
+#     # rename_foreign_key :users, "user_roles_fk"
+#     # ```
 #     #
 #     # The operation is always reversible.
 #     def rename_foreign_key(table, reference, **options, &block); end

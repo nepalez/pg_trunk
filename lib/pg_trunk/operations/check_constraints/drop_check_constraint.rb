@@ -18,27 +18,35 @@
 #     #
 #     # The constraint can be identified by the table and explicit name
 #     #
-#     #   drop_check_constraint :users, name: "phone_is_long_enough"
+#     # ```ruby
+#     # drop_check_constraint :users, name: "phone_is_long_enough"
+#     # ```
 #     #
 #     # Alternatively the name can be got from the expression.
 #     # Be careful! the expression must have exactly the same form
 #     # as stored in the database:
 #     #
-#     #   drop_check_constraint :users, "length((phone::text) > 10)"
+#     # ```ruby
+#     # drop_check_constraint :users, "length((phone::text) > 10)"
+#     # ```
 #     #
 #     # To made operation reversible the expression must be provided:
 #     #
-#     #   drop_check_constraint "users" do |c|
-#     #     c.expression "length((phone::text) > 10)"
-#     #     c.inherit false
-#     #     c.comment "The phone is 10+ chars long"
-#     #   end
+#     # ```ruby
+#     # drop_check_constraint "users" do |c|
+#     #   c.expression "length((phone::text) > 10)"
+#     #   c.inherit false
+#     #   c.comment "The phone is 10+ chars long"
+#     # end
+#     # ```
 #     #
 #     # The operation can be called with `if_exists` option.
 #     #
-#     #   drop_check_constraint :users,
-#     #                         name: "phone_is_long_enough",
-#     #                         if_exists: true
+#     # ```ruby
+#     # drop_check_constraint :users,
+#     #                       name: "phone_is_long_enough",
+#     #                       if_exists: true
+#     # ```
 #     #
 #     # In this case the operation is always irreversible due to
 #     # uncertainty of the previous state of the database.

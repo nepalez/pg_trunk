@@ -10,15 +10,16 @@
 #     # @yieldparam Object receiver of methods specifying the type
 #     # @return [void]
 #     #
-#     # @example
-#     #   create_composite_type "paint.colored_point" do |d|
-#     #     d.column "x", "integer"
-#     #     d.column "y", "integer"
-#     #     d.column "color", "text", collation: "en_US"
-#     #     d.comment <<~COMMENT
-#     #       2D point with color
-#     #     COMMENT
-#     #   end
+#     # ```ruby
+#     # create_composite_type "paint.colored_point" do |d|
+#     #   d.column "x", "integer"
+#     #   d.column "y", "integer"
+#     #   d.column "color", "text", collation: "en_US"
+#     #   d.comment <<~COMMENT
+#     #     2D point with color
+#     #   COMMENT
+#     # end
+#     # ```
 #     #
 #     # It is always reversible.
 #     def create_composite_type(name, **options, &block); end

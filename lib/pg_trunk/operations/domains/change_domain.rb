@@ -13,22 +13,24 @@
 #     # modify the default_sql value, or the description of the domain type.
 #     # Neither the underlying type nor the collation can be changed.
 #     #
-#     #   change_domain "dict.us_postal_code" do |d|
-#     #     d.null true # from: false
-#     #     # check is added for inversion
-#     #     d.drop_constraint "postal_code_length", check: <<~SQL
-#     #       length(VALUE) > 3 AND length(VALUE) < 6
-#     #     SQL
-#     #     d.add_constraint <<~SQL, name: "postal_code_valid"
-#     #       VALUE ~ '^\d{5}$' OR VALUE ~ '^\d{5}-\d{4}$'
-#     #     SQL
-#     #     d.default_sql "'00000'::text", from: "'0000'::text"
-#     #     d.comment <<~COMMENT, from: <<~COMMENT
-#     #       Supported currencies
-#     #     COMMENT
-#     #       Currencies
-#     #     COMMENT
-#     #   end
+#     # ```ruby
+#     # change_domain "dict.us_postal_code" do |d|
+#     #   d.null true # from: false
+#     #   # check is added for inversion
+#     #   d.drop_constraint "postal_code_length", check: <<~SQL
+#     #     length(VALUE) > 3 AND length(VALUE) < 6
+#     #   SQL
+#     #   d.add_constraint <<~SQL, name: "postal_code_valid"
+#     #     VALUE ~ '^\d{5}$' OR VALUE ~ '^\d{5}-\d{4}$'
+#     #   SQL
+#     #   d.default_sql "'00000'::text", from: "'0000'::text"
+#     #   d.comment <<~COMMENT, from: <<~COMMENT
+#     #     Supported currencies
+#     #   COMMENT
+#     #     Currencies
+#     #   COMMENT
+#     # end
+#     # ```
 #     #
 #     # Use blank string (not a `nil` value) to reset either a default_sql,
 #     # or the comment. `nil`-s here will be ignored.
@@ -41,14 +43,15 @@
 #     # has `if_exists: true` or `force: :cascade` option -- due to
 #     # uncertainty of the previous state of the database:
 #     #
-#     #   # Irreversible change
-#     #   change_domain "dict.us_postal_code", force: :cascade do |d|
-#     #     d.drop_constraint "postal_code_valid" # missed `:check` option
-#     #     d.drop_constraint "postal_code_length"
-#     #     d.drop_constraint "postal_code_format", if_exists: true
-#     #     d.default_sql "'0000'::text" # missed `:from` option
-#     #     d.comment "New comment" # missed `:from` option
-#     #   end
+#     # ```ruby
+#     # change_domain "dict.us_postal_code", force: :cascade do |d|
+#     #   d.drop_constraint "postal_code_valid" # missed `:check` option
+#     #   d.drop_constraint "postal_code_length"
+#     #   d.drop_constraint "postal_code_format", if_exists: true
+#     #   d.default_sql "'0000'::text" # missed `:from` option
+#     #   d.comment "New comment" # missed `:from` option
+#     # end
+#     # ```
 #     def change_domain(name, &block); end
 #   end
 module PGTrunk::Operations::Domains

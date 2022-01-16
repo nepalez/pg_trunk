@@ -11,7 +11,9 @@
 #     # A custom statistics can be renamed by changing both the name
 #     # and the schema (namespace) it belongs to.
 #     #
-#     #   rename_statistics "math.my_stat", to: "public.my_stats"
+#     # ```ruby
+#     # rename_statistics "math.my_stat", to: "public.my_stats"
+#     # ```
 #     #
 #     # The operation is always reversible.
 #     def rename_statistics(name, to:); end

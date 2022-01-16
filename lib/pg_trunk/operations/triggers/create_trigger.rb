@@ -25,34 +25,40 @@
 #     #
 #     # The trigger can be created either using inline syntax
 #     #
-#     #   create_trigger "users", "do_something",
-#     #                   function: "do_something()",
-#     #                   for_each: :row,
-#     #                   type: :after,
-#     #                   events: %i[insert update],
-#     #                   comment: "Does something useful"
+#     # ```ruby
+#     # create_trigger "users", "do_something",
+#     #                 function: "do_something()",
+#     #                 for_each: :row,
+#     #                 type: :after,
+#     #                 events: %i[insert update],
+#     #                 comment: "Does something useful"
+#     # ```
 #     #
 #     # or using a block:
 #     #
-#     #   create_trigger do |t|
-#     #     t.table "users"
-#     #     t.name "do_something"
-#     #     t.function "do_something()"
-#     #     t.for_each :row
-#     #     t.type :after
-#     #     t.events %i[insert update]
-#     #     t.comment "Does something useful"
-#     #   end
+#     # ```ruby
+#     # create_trigger do |t|
+#     #   t.table "users"
+#     #   t.name "do_something"
+#     #   t.function "do_something()"
+#     #   t.for_each :row
+#     #   t.type :after
+#     #   t.events %i[insert update]
+#     #   t.comment "Does something useful"
+#     # end
+#     # ```
 #     #
 #     # With a `replace_existing: true` option,
 #     # it will be created using the `CREATE OR REPLACE` clause.
 #     # (Available in PostgreSQL v14+).
 #     #
-#     #    create_trigger "users", "do_something",
-#     #                   function: "do_something()",
-#     #                   type: :after,
-#     #                   events: %i[insert update],
-#     #                   replace_previous: true
+#     # ```ruby
+#     #  create_trigger "users", "do_something",
+#     #                 function: "do_something()",
+#     #                 type: :after,
+#     #                 events: %i[insert update],
+#     #                 replace_previous: true
+#     # ```
 #     #
 #     # In this case the migration is irreversible because we
 #     # don't know if and how to restore its previous definition.

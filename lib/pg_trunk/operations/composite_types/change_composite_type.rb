@@ -16,30 +16,36 @@
 #     #
 #     # Providing a type "paint.colored_point":
 #     #
-#     #   create_composite_type "paint.colored_point" do |t|
-#     #     t.column "color", "text", collation: "en_US"
-#     #     t.column "x", "integer"
-#     #     t.column "z", "integer"
-#     #   end
+#     # ```ruby
+#     # create_composite_type "paint.colored_point" do |t|
+#     #   t.column "color", "text", collation: "en_US"
+#     #   t.column "x", "integer"
+#     #   t.column "z", "integer"
+#     # end
+#     # ```
 #     #
 #     # After the following change:
 #     #
-#     #   change_composite_type "paint.colored_point" do |t|
-#     #     t.change_column "color", "text", collation: "ru_RU", from_collation: "en_US"
-#     #     t.change_column "x", "bigint", from_type: "integer"
-#     #     t.drop_column "z", "integer"
-#     #     t.add_column "Y", "bigint"
-#     #     t.rename_column "x", to: "X"
-#     #     t.comment "2D point with a color", from: "2D point"
-#     #   end
+#     # ```ruby
+#     # change_composite_type "paint.colored_point" do |t|
+#     #   t.change_column "color", "text", collation: "ru_RU", from_collation: "en_US"
+#     #   t.change_column "x", "bigint", from_type: "integer"
+#     #   t.drop_column "z", "integer"
+#     #   t.add_column "Y", "bigint"
+#     #   t.rename_column "x", to: "X"
+#     #   t.comment "2D point with a color", from: "2D point"
+#     # end
+#     # ```
 #     #
 #     # The definition became:
 #     #
-#     #   create_composite_type "paint.colored_point" do |t|
-#     #     t.column "color", "text", collation: "ru_RU"
-#     #     t.column "X", "bigint"
-#     #     t.column "Y", "integer"
-#     #   end
+#     # ```ruby
+#     # create_composite_type "paint.colored_point" do |t|
+#     #   t.column "color", "text", collation: "ru_RU"
+#     #   t.column "X", "bigint"
+#     #   t.column "Y", "integer"
+#     # end
+#     # ```
 #     #
 #     # Notice, that all renames will be done AFTER other changes,
 #     # so in `change_column` you should use the old names.

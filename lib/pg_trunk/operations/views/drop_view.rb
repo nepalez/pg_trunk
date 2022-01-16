@@ -21,30 +21,40 @@
 #     # The operation drops the existing view identified by its
 #     # qualified name (it can include a schema).
 #     #
-#     #   drop_view "views.admin_users"
+#     # ```ruby
+#     # drop_view "views.admin_users"
+#     # ```
 #     #
 #     # To make the operation invertible, use the same options
 #     # as in the `create_view` operation.
 #     #
-#     #   drop_view "views.admin_users" do |v|
-#     #     v.sql_definition "SELECT name, email FROM users WHERE admin;"
-#     #     v.check :local
-#     #     v.comment "Admin users only"
-#     #   end
+#     # ```ruby
+#     # drop_view "views.admin_users" do |v|
+#     #   v.sql_definition "SELECT name, email FROM users WHERE admin;"
+#     #   v.check :local
+#     #   v.comment "Admin users only"
+#     # end
+#     # ```
 #     #
 #     # You can also use a version-base SQL definition like:
 #     #
-#     #    drop_view "views.admin_users", revert_to_version: 1
+#     # ```ruby
+#     # drop_view "views.admin_users", revert_to_version: 1
+#     # ```
 #     #
 #     # With the `force: :cascade` option the operation would remove
 #     # all the objects which depend on the view.
 #     #
-#     #   drop_view "views.admin_users", force: :cascade
+#     # ```ruby
+#     # drop_view "views.admin_users", force: :cascade
+#     # ```
 #     #
 #     # With the `if_exists: true` option the operation won't fail
 #     # even when the view was absent in the database.
 #     #
-#     #   drop_view "views.admin_users", if_exists: true
+#     # ```ruby
+#     # drop_view "views.admin_users", if_exists: true
+#     # ```
 #     #
 #     # Both options make an operation irreversible due to uncertainty
 #     # of the previous state of the database.

@@ -17,33 +17,36 @@
 #     # You can change any property except for the name
 #     # (use `rename_function` instead) and `language`.
 #     #
-#     #   change_function "math.mult(int, int)" do |f|
-#     #     f.volatility :immutable, from: :stable
-#     #     f.parallel :safe, from: :restricted
-#     #     f.security :invoker
-#     #     f.leakproof true
-#     #     f.strict true
-#     #     f.cost 5.0
-#     #     # f.rows 1 (supported for functions returning sets of rows)
-#     #   SQL
+#     # ```ruby
+#     # change_function "math.mult(int, int)" do |f|
+#     #   f.volatility :immutable, from: :stable
+#     #   f.parallel :safe, from: :restricted
+#     #   f.security :invoker
+#     #   f.leakproof true
+#     #   f.strict true
+#     #   f.cost 5.0
+#     #   # f.rows 1 (supported for functions returning sets of rows)
+#     # SQL
+#     # ```
 #     #
 #     # The example above is not invertible because of uncertainty
 #     # about the previous volatility, parallelism, and cost.
 #     # To define them, use a from options (available in a block syntax only):
 #     #
-#     #   change_function "math.mult(a int, b int)" do |f|
-#     #     f.body <<~SQL, from: <<~SQL
-#     #       SELECT a * b;
-#     #     SQL
-#     #       SELECT min(a * b, 1);
-#     #     SQL
-#     #     f.volatility :immutable, from: :volatile
-#     #     f.parallel :safe, from: :unsafe
-#     #     f.leakproof true
-#     #     f.strict true
-#     #     f.cost 5.0, from: 100.0
-#     #     # f.rows 1, from: 0
+#     # ```ruby
+#     # change_function "math.mult(a int, b int)" do |f|
+#     #   f.body <<~SQL, from: <<~SQL
+#     #     SELECT a * b;
 #     #   SQL
+#     #     SELECT min(a * b, 1);
+#     #   SQL
+#     #   f.volatility :immutable, from: :volatile
+#     #   f.parallel :safe, from: :unsafe
+#     #   f.leakproof true
+#     #   f.strict true
+#     #   f.cost 5.0, from: 100.0
+#     # SQL
+#     # ```
 #     #
 #     # Like in the other operations, the function can be
 #     # identified by a qualified name (with types of arguments).

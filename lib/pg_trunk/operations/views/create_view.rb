@@ -18,14 +18,18 @@
 #     #
 #     # The operation creates the view using its `sql_definition`:
 #     #
-#     #   create_view("views.admin_users", sql_definition: <<~SQL)
-#     #     SELECT id, name FROM users WHERE admin;
-#     #   SQL
+#     # ```ruby
+#     # create_view("views.admin_users", sql_definition: <<~SQL)
+#     #   SELECT id, name FROM users WHERE admin;
+#     # SQL
+#     # ```
 #     #
 #     # For compatibility to the `scenic` gem, we also support
 #     # adding a definition via its version:
 #     #
-#     #    create_view "admin_users", version: 1
+#     # ```ruby
+#     # create_view "admin_users", version: 1
+#     # ```
 #     #
 #     # It is expected, that a `db/views/admin_users_v01.sql`
 #     # to contain the SQL snippet.
@@ -33,17 +37,21 @@
 #     # You can also set a comment describing the view, and the check option
 #     # (either `:local` or `:cascaded`):
 #     #
-#     #   create_view "admin_users" do |v|
-#     #     v.sql_definition "SELECT id, name FROM users WHERE admin;"
-#     #     v.check :local
-#     #     v.comment "Admin users only"
-#     #   end
+#     # ```ruby
+#     # create_view "admin_users" do |v|
+#     #   v.sql_definition "SELECT id, name FROM users WHERE admin;"
+#     #   v.check :local
+#     #   v.comment "Admin users only"
+#     # end
+#     # ```
 #     #
 #     # With the `replace_existing: true` option the operation
 #     # would use `CREATE OR REPLACE VIEW` command, so it
 #     # can be used to "update" (or reload) the existing view.
 #     #
-#     #   create_view "admin_users", version: 1, replace_existing: true
+#     # ```ruby
+#     # create_view "admin_users", version: 1, replace_existing: true
+#     # ```
 #     #
 #     # This option makes an operation irreversible due to uncertainty
 #     # of the previous state of the database.

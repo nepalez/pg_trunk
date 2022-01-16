@@ -12,7 +12,9 @@
 #     # The operation enables refreshing a materialized view
 #     # by reloading its underlying SQL query:
 #     #
-#     #   refresh_materialized_view "admin_users"
+#     # ```ruby
+#     # refresh_materialized_view "admin_users"
+#     # ```
 #     #
 #     # The option `algorithm: :concurrently` acts exactly
 #     # like in the `create_index` definition. You should

@@ -17,31 +17,35 @@
 #     # You can change any property except for the name
 #     # (use `rename_function` instead) and `language`.
 #     #
-#     #   change_procedure "metadata.set_foo(a int)" do |p|
-#     #     p.body <<~SQL
-#     #       SET foo = a
-#     #     SQL
-#     #     p.security :invoker
-#     #     p.comment "Multiplies 2 integers"
+#     # ```ruby
+#     # change_procedure "metadata.set_foo(a int)" do |p|
+#     #   p.body <<~SQL
+#     #     SET foo = a
 #     #   SQL
+#     #   p.security :invoker
+#     #   p.comment "Multiplies 2 integers"
+#     # SQL
+#     # ```
 #     #
 #     # The example above is not invertible because of uncertainty
 #     # about the previous state of body and comment.
 #     # To define them, use a from options (available in a block syntax only):
 #     #
-#     #   change_procedure "metadata.set_foo(a int)" do |p|
-#     #     p.body <<~SQL, from: <<~SQL
-#     #       SET foo = a
-#     #     SQL
-#     #       SET foo = -a
-#     #     SQL
-#     #     p.comment <<~MSG, from: <<~MSG
-#     #       Multiplies 2 integers
-#     #     MSG
-#     #       Multiplies ints
-#     #     MSG
-#     #     p.security :invoker
+#     # ```ruby
+#     # change_procedure "metadata.set_foo(a int)" do |p|
+#     #   p.body <<~SQL, from: <<~SQL
+#     #     SET foo = a
 #     #   SQL
+#     #     SET foo = -a
+#     #   SQL
+#     #   p.comment <<~MSG, from: <<~MSG
+#     #     Multiplies 2 integers
+#     #   MSG
+#     #     Multiplies ints
+#     #   MSG
+#     #   p.security :invoker
+#     # SQL
+#     # ```
 #     #
 #     # Like in the other operations, the procedure can be
 #     # identified by a qualified name (with types of arguments).

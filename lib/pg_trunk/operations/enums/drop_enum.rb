@@ -16,28 +16,36 @@
 #     # The operation drops a enumerated type identified by its
 #     # qualified name (it can include a schema).
 #     #
-#     #   drop_enum "finances.currency"
+#     # ```ruby
+#     # drop_enum "finances.currency"
+#     # ```
 #     #
 #     # To make the operation invertible, use the same options
 #     # as in the `create_enum` operation.
 #     #
-#     #   drop_enum "finances.currency" do |e|
-#     #     e.values "BTC", "EUR", "GBP", "USD"
-#     #     e.value "JPY" # the alternative way to add a value
-#     #     e.comment <<~COMMENT
-#     #       The list of values for supported currencies.
-#     #     COMMENT
-#     #   end
+#     # ```ruby
+#     # drop_enum "finances.currency" do |e|
+#     #   e.values "BTC", "EUR", "GBP", "USD"
+#     #   e.value "JPY" # the alternative way to add a value
+#     #   e.comment <<~COMMENT
+#     #     The list of values for supported currencies.
+#     #   COMMENT
+#     # end
+#     # ```
 #     #
 #     # With the `force: :cascade` option the operation would remove
 #     # all the objects that use the type.
 #     #
-#     #   drop_enum "finances.currency", force: :cascade
+#     # ```ruby
+#     # drop_enum "finances.currency", force: :cascade
+#     # ```
 #     #
 #     # With the `if_exists: true` option the operation won't fail
 #     # even when the view was absent in the database.
 #     #
-#     #   drop_enum "finances.currency", if_exists: true
+#     # ```ruby
+#     # drop_enum "finances.currency", if_exists: true
+#     # ```
 #     #
 #     # Both options make a migration irreversible due to uncertainty
 #     # of the previous state of the database.

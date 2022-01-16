@@ -10,7 +10,9 @@
 #     #
 #     # A domain type can be both renamed and moved to another schema.
 #     #
-#     #   rename_domain "us_code", to: "dict.us_postal_code"
+#     # ```ruby
+#     # rename_domain "us_code", to: "dict.us_postal_code"
+#     # ```
 #     #
 #     # The operation is always reversible.
 #     def rename_domain(name, to:); end

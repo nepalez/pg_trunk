@@ -14,17 +14,17 @@
 #     # @yieldparam Object receiver of methods specifying the type
 #     # @return [void]
 #     #
-#     # @example:
-#     #
-#     #   create_domain "dict.us_postal_code", as: "text" do |d|
-#     #     d.collation "en_US"
-#     #     d.default_sql "'0000'::text"
-#     #     d.null false
-#     #     d.constraint <<~SQL, name: "code_valid"
-#     #       VALUE ~ '^\d{5}$' OR VALUE ~ '^\d{5}-\d{4}$'
-#     #     SQL
-#     #     d.comment "US postal code"
-#     #   end
+#     # ```ruby
+#     # create_domain "dict.us_postal_code", as: "text" do |d|
+#     #   d.collation "en_US"
+#     #   d.default_sql "'0000'::text"
+#     #   d.null false
+#     #   d.constraint <<~SQL, name: "code_valid"
+#     #     VALUE ~ '^\d{5}$' OR VALUE ~ '^\d{5}-\d{4}$'
+#     #   SQL
+#     #   d.comment "US postal code"
+#     # end
+#     # ```
 #     #
 #     # It is always reversible.
 #     def create_domain(name, **options, &block); end

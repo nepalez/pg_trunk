@@ -12,12 +12,16 @@
 #     # A view can be renamed by changing both the name
 #     # and the schema (namespace) it belongs to.
 #     #
-#     #   rename_view "views.admin_users", to: "admins"
+#     # ```ruby
+#     # rename_view "views.admin_users", to: "admins"
+#     # ```
 #     #
 #     # With the `if_exists: true` option, the operation won't fail
 #     # even when the view wasn't existed.
 #     #
-#     #   rename_view "views.admin_users", to: "admins", if_exists: true
+#     # ```ruby
+#     # rename_view "views.admin_users", to: "admins", if_exists: true
+#     # ```
 #     #
 #     # At the same time, the option makes a view irreversible
 #     # due to uncertainty of the previous state of the database.

@@ -25,18 +25,22 @@
 #     #
 #     # A trigger can be dropped by a table and name:
 #     #
-#     #   drop_trigger "users", "do_something"
+#     # ```ruby
+#     # drop_trigger "users", "do_something"
+#     # ```
 #     #
 #     # the default name can be restored from its attributes as well.
 #     #
-#     #   drop_trigger "users" do |t|
-#     #     t.function "send_notifications()"
-#     #     t.for_each :row
-#     #     t.type :after
-#     #     t.events %i[update]
-#     #     t.columns %w[email phone]
-#     #     t.comment "Does something"
-#     #   end
+#     # ```ruby
+#     # drop_trigger "users" do |t|
+#     #   t.function "send_notifications()"
+#     #   t.for_each :row
+#     #   t.type :after
+#     #   t.events %i[update]
+#     #   t.columns %w[email phone]
+#     #   t.comment "Does something"
+#     # end
+#     # ```
 #     #
 #     # Notice, that you have to specify all attributes to make
 #     # the operation reversible.
@@ -44,7 +48,9 @@
 #     # The operation can be called with `if_exists` option. In this case
 #     # it would do nothing when no trigger existed.
 #     #
-#     #   drop_trigger "users", "unknown_trigger", if_exists: true
+#     # ```ruby
+#     # drop_trigger "users", "unknown_trigger", if_exists: true
+#     # ```
 #     #
 #     # This option, though, makes the operation irreversible because of
 #     # uncertainty of the previous state of the database.

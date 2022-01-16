@@ -12,20 +12,24 @@
 #     #
 #     # The operation replaces the view with a new definition(s):
 #     #
-#     #   change_view "admin_users" do |v|
-#     #     v.sql_definition: <<~SQL, from: <<~SQL
-#     #       SELECT id, name FROM users WHERE admin;
-#     #     SQL
-#     #       SELECT * FROM users WHERE admin;
-#     #     SQL
-#     #   end
+#     # ```ruby
+#     # change_view "admin_users" do |v|
+#     #   v.sql_definition: <<~SQL, from: <<~SQL
+#     #     SELECT id, name FROM users WHERE admin;
+#     #   SQL
+#     #     SELECT * FROM users WHERE admin;
+#     #   SQL
+#     # end
+#     # ```
 #     #
 #     # For some compatibility to the `scenic` gem, we also support
 #     # adding a definition via its version:
 #     #
-#     #    change_view "admin_users" do |v|
-#     #      v.version 2, from: 1
-#     #    end
+#     # ```ruby
+#     # change_view "admin_users" do |v|
+#     #   v.version 2, from: 1
+#     # end
+#     # ```
 #     #
 #     # It is expected, that both `db/views/admin_users_v01.sql`
 #     # and `db/views/admin_users_v02.sql` to contain SQL snippets.
@@ -36,10 +40,12 @@
 #     # You can also (re)set a comment describing the view,
 #     # and the check option (either `:local` or `:cascaded`):
 #     #
-#     #   change_view "admin_users" do |v|
-#     #     v.check :local, from: :cascaded
-#     #     v.comment "Admin users only", from: ""
-#     #   end
+#     # ```ruby
+#     # change_view "admin_users" do |v|
+#     #   v.check :local, from: :cascaded
+#     #   v.comment "Admin users only", from: ""
+#     # end
+#     # ```
 #     def change_view(name, **options, &block); end
 #   end
 module PGTrunk::Operations::Views

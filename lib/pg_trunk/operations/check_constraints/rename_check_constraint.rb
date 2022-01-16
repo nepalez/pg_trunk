@@ -14,21 +14,27 @@
 #     #
 #     # A constraint can be identified by the table and explicit name
 #     #
-#     #   rename_check_constraint :users,
-#     #                           name: "phone_is_long_enough",
-#     #                           to: "phones.long_enough"
+#     # ```ruby
+#     # rename_check_constraint :users,
+#     #                         name: "phone_is_long_enough",
+#     #                         to: "phones.long_enough"
+#     # ```
 #     #
 #     # Alternatively the name can be got from the expression.
 #     # Be careful! the expression must have exactly the same form
 #     # as stored in the database:
 #     #
-#     #   rename_check_constraint :users, "length((phone::text) > 10)",
-#     #                           to: "long_enough"
+#     # ```ruby
+#     # rename_check_constraint :users, "length((phone::text) > 10)",
+#     #                         to: "long_enough"
+#     # ```
 #     #
 #     # The name can be reset to auto-generated when
 #     # the `:to` option is missed or blank:
 #     #
-#     #   rename_check_constraint :users, "phone_is_long_enough"
+#     # ```ruby
+#     # rename_check_constraint :users, "phone_is_long_enough"
+#     # ```
 #     #
 #     # The operation is always reversible.
 #     def rename_check_constraint(table, expression = nil, **options, &block); end

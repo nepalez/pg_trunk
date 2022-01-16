@@ -10,7 +10,9 @@
 #     #
 #     # @example:
 #     #
-#     #   rename_enum "currencies", to: "finances.currency"
+#     # ```ruby
+#     # rename_enum "currencies", to: "finances.currency"
+#     # ```
 #     #
 #     # The operation is always reversible.
 #     def rename_enum(name, to:); end

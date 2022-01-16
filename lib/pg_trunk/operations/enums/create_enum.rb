@@ -11,15 +11,15 @@
 #     # @yieldparam Object receiver of methods specifying the type
 #     # @return [void]
 #     #
-#     # @example
-#     #
-#     #   create_enum "finances.currency" do |e|
-#     #     e.values "BTC", "EUR", "GBP", "USD"
-#     #     e.value "JPY" # the alternative way to add a value to the tail
-#     #     e.comment <<~COMMENT
-#     #       The list of values for supported currencies.
-#     #     COMMENT
-#     #   end
+#     # ```ruby
+#     # create_enum "finances.currency" do |e|
+#     #   e.values "BTC", "EUR", "GBP", "USD"
+#     #   e.value "JPY" # the alternative way to add a value to the tail
+#     #   e.comment <<~COMMENT
+#     #     The list of values for supported currencies.
+#     #   COMMENT
+#     # end
+#     # ```
 #     #
 #     # It is always reversible.
 #     def create_enum(name, **options, &block); end

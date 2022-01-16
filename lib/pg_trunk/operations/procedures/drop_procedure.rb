@@ -18,31 +18,39 @@
 #     #
 #     # A procedure can be dropped by a plain name:
 #     #
-#     #   drop_procedure "set_foo"
+#     # ```ruby
+#     # drop_procedure "set_foo"
+#     # ```
 #     #
 #     # If several overloaded procedures have the name,
 #     # then you must specify the signature having
 #     # types of attributes at least:
 #     #
-#     #   drop_procedure "set_foo(int)"
+#     # ```ruby
+#     # drop_procedure "set_foo(int)"
+#     # ```
 #     #
 #     # In both cases above the operation is irreversible. To make it
 #     # inverted you have to provide a full signature along with
 #     # the body definition. The other options are supported as well:
 #     #
-#     #   drop_procedure "metadata.set_foo(a int)" do |p|
-#     #     p.language "sql" # (default)
-#     #     p.body <<~SQL
-#     #       SET foo = a
-#     #     SQL
-#     #     p.security :invoker # (default), also :definer
-#     #     p.comment "Multiplies 2 integers"
+#     # ```ruby
+#     # drop_procedure "metadata.set_foo(a int)" do |p|
+#     #   p.language "sql" # (default)
+#     #   p.body <<~SQL
+#     #     SET foo = a
 #     #   SQL
+#     #   p.security :invoker # (default), also :definer
+#     #   p.comment "Multiplies 2 integers"
+#     # SQL
+#     # ```
 #     #
 #     # The operation can be called with `if_exists` option. In this case
 #     # it would do nothing when no procedure existed.
 #     #
-#     #   drop_procedure "metadata.set_foo(a int)", if_exists: true
+#     # ```ruby
+#     # drop_procedure "metadata.set_foo(a int)", if_exists: true
+#     # ```
 #     #
 #     # Notice, that this option make the operation irreversible because of
 #     # uncertainty about the previous state of the database.

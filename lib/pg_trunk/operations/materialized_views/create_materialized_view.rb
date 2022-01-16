@@ -18,14 +18,18 @@
 #     #
 #     # The operation creates the view using its `sql_definition`:
 #     #
-#     #   create_materialized_view("views.admin_users", sql_definition: <<~SQL)
-#     #     SELECT id, name FROM users WHERE admin;
-#     #   SQL
+#     # ```ruby
+#     # create_materialized_view("views.admin_users", sql_definition: <<~SQL)
+#     #   SELECT id, name FROM users WHERE admin;
+#     # SQL
+#     # ```
 #     #
 #     # For compatibility to the `scenic` gem, we also support
 #     # adding a definition via its version:
 #     #
-#     #    create_materialized_view "admin_users", version: 1
+#     # ```ruby
+#     # create_materialized_view "admin_users", version: 1
+#     # ```
 #     #
 #     # It is expected, that a `db/materialized_views/admin_users_v01.sql`
 #     # to contain the SQL snippet.
@@ -35,41 +39,45 @@
 #     # can be moved to another tablespace, but we don't support
 #     # this feature yet).
 #     #
-#     #   create_materialized_view "admin_users" do |v|
-#     #     v.tablespace "fast_ssd"
-#     #     v.sql_definition <<~SQL
-#     #       SELECT id, name, password, admin, on_duty
-#     #       FROM users
-#     #       WHERE admin
-#     #     SQL
-#     #   end
+#     # ```ruby
+#     # create_materialized_view "admin_users" do |v|
+#     #   v.tablespace "fast_ssd"
+#     #   v.sql_definition <<~SQL
+#     #     SELECT id, name, password, admin, on_duty
+#     #     FROM users
+#     #     WHERE admin
+#     #   SQL
+#     # end
+#     # ```
 #     #
 #     # You can also set a comment describing the view,
 #     # and redefine the storage options for some TOAST-ed columns,
 #     # as well as their custom statistics:
 #     #
-#     #   create_materialized_view "admin_users" do |v|
-#     #     v.sql_definition <<~SQL
-#     #       SELECT id, name, password, admin, on_duty
-#     #       FROM users
-#     #       WHERE admin
-#     #     SQL
-#     #
-#     #     v.column "password", storage: "external" # to avoid compression
-#     #     v.column "password", n_distinct: -1 # linear dependency
-#     #     v.column "admin", n_distinct: 1 # exact number of values
-#     #     v.column "on_duty", statistics: 2 # the total number of values
-#     #
-#     #     v.comment "Admin users only"
-#     #   end
+#     # ```ruby
+#     # create_materialized_view "admin_users" do |v|
+#     #   v.sql_definition <<~SQL
+#     #     SELECT id, name, password, admin, on_duty
+#     #     FROM users
+#     #     WHERE admin
+#     #   SQL
+#     #   v.column "password", storage: "external" # to avoid compression
+#     #   v.column "password", n_distinct: -1 # linear dependency
+#     #   v.column "admin", n_distinct: 1 # exact number of values
+#     #   v.column "on_duty", statistics: 2 # the total number of values
+#     #   v.comment "Admin users only"
+#     # end
+#     # ```
 #     #
 #     # With the `replace_existing: true` option the operation
 #     # would use `CREATE OR REPLACE VIEW` command, so it
 #     # can be used to "update" (or reload) the existing view.
 #     #
-#     #   create_materialized_view "admin_users",
-#     #                            version: 1,
-#     #                            replace_existing: true
+#     # ```ruby
+#     # create_materialized_view "admin_users",
+#     #                          version: 1,
+#     #                          replace_existing: true
+#     # ```
 #     #
 #     # This option makes the migration irreversible due to uncertainty
 #     # of the previous state of the database.

@@ -12,39 +12,41 @@
 #     # @yieldparam Object receiver of methods specifying the type
 #     # @return [void]
 #     #
-#     # The operation drops a composite_type type identified by its
-#     # qualified name (it can include a schema).
+#     # The operation drops a composite_type type identified by its qualified name (it can include a schema).
 #     #
-#     # For inversion use the same options as in the
-#     # `create_composite_type` operation.
+#     # For inversion use the same options as in the `create_composite_type` operation.
 #     #
-#     #   drop_composite_type "paint.colored_point" do |d|
-#     #     d.column "x", "integer"
-#     #     d.column "y", "integer"
-#     #     d.column "color", "text", collation: "en_US"
-#     #     d.comment <<~COMMENT
-#     #       2D point with color
-#     #     COMMENT
-#     #   end
+#     # ```ruby
+#     # drop_composite_type "paint.colored_point" do |d|
+#     #   d.column "x", "integer"
+#     #   d.column "y", "integer"
+#     #   d.column "color", "text", collation: "en_US"
+#     #   d.comment <<~COMMENT
+#     #     2D point with color
+#     #   COMMENT
+#     # end
+#     # ```
 #     #
 #     # Notice, that the composite type creation can use no attributes.
-#     # That's why dropping it is always reversible; though the reversion
-#     # would provide a type without columns:
+#     # That's why dropping it is always reversible; though the reversion provides a type without columns:
 #     #
-#     #   drop_composite_type "paint.colored_point"
+#     # ```ruby
+#     # drop_composite_type "paint.colored_point"
+#     # ```
 #     #
-#     # With the `force: :cascade` option the operation would remove
-#     # all objects using the type.
+#     # With the `force: :cascade` option the operation removes all objects using the type.
 #     #
-#     #   drop_composite_type "paint.colored_point", force: :cascade
+#     # ```ruby
+#     # drop_composite_type "paint.colored_point", force: :cascade
+#     # ```
 #     #
-#     # With the `if_exists: true` option the operation won't fail
-#     # even when the view was absent in the database.
+#     # With the `if_exists: true` option the operation won't fail even when the view was absent.
 #     #
-#     #   drop_composite_type "paint.colored_point", if_exists: true
+#     # ```ruby
+#     # drop_composite_type "paint.colored_point", if_exists: true
+#     # ```
 #     #
-#     # Both options make a migration irreversible due to uncertainty
-#     # of the previous state of the database.
+#     # Both options make a migration irreversible due to uncertainty of the previous state of the database.
 #     def drop_composite_type(name, **options, &block); end
 #   end
 module PGTrunk::Operations::CompositeTypes

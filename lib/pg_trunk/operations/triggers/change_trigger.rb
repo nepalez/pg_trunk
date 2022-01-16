@@ -13,13 +13,15 @@
 #     #
 #     # The trigger can be changed using `CREATE OR REPLACE TRIGGER` command:
 #     #
-#     #   change_trigger "users", "do_something" do |t|
-#     #     t.function "do_something()", from: "do_something_different()"
-#     #     t.for_each :row # from: :statement
-#     #     t.type :after, from: :before
-#     #     t.events %i[insert update], from: %i[insert]
-#     #     t.comment "Does something useful", from: ""
-#     #   end
+#     # ```ruby
+#     # change_trigger "users", "do_something" do |t|
+#     #   t.function "do_something()", from: "do_something_different()"
+#     #   t.for_each :row # from: :statement
+#     #   t.type :after, from: :before
+#     #   t.events %i[insert update], from: %i[insert]
+#     #   t.comment "Does something useful", from: ""
+#     # end
+#     # ```
 #     def create_trigger(table, name = nil, **options, &block); end
 #   end
 module PGTrunk::Operations::Triggers

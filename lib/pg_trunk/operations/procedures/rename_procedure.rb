@@ -13,11 +13,15 @@
 #     #
 #     # If there are no overloaded procedures, then you can use a plain name:
 #     #
-#     #   rename_procedure "math.set_foo", to: "public.foo_setup"
+#     # ```ruby
+#     # rename_procedure "math.set_foo", to: "public.foo_setup"
+#     # ```
 #     #
 #     # otherwise the types of attributes must be explicitly specified.
 #     #
-#     #   rename_procedure "math.set_foo(int)", to: "public.foo_setup"
+#     # ```ruby
+#     # rename_procedure "math.set_foo(int)", to: "public.foo_setup"
+#     # ```
 #     #
 #     # Any specification of attributes in `to:` option
 #     # is ignored because they cannot be changed anyway.

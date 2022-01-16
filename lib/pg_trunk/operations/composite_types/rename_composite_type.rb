@@ -8,9 +8,9 @@
 #     # @option [#to_s] :to (nil) The new qualified name for the type
 #     # @return [void]
 #     #
-#     # @example
-#     #
-#     #   rename_composite_type "point", to: "paint.colored_point"
+#     # ```ruby
+#     # rename_composite_type "point", to: "paint.colored_point"
+#     # ```
 #     #
 #     # The operation is always reversible.
 #     def rename_composite_type(name, to:); end

@@ -26,46 +26,54 @@
 #     #
 #     # The function can be created either using inline syntax
 #     #
-#     #   create_function "math.mult(a int, b int) int",
-#     #                   language: :sql,
-#     #                   body: "SELECT a * b",
-#     #                   volatility: :immutable,
-#     #                   leakproof: true,
-#     #                   comment: "Multiplies 2 integers"
+#     # ```ruby
+#     # create_function "math.mult(a int, b int) int",
+#     #                 language: :sql,
+#     #                 body: "SELECT a * b",
+#     #                 volatility: :immutable,
+#     #                 leakproof: true,
+#     #                 comment: "Multiplies 2 integers"
+#     # ```
 #     #
 #     # or using a block:
 #     #
-#     #   create_function "math.mult(a int, b int) int" do |f|
-#     #     f.language "sql" # (default)
-#     #     f.body <<~SQL
-#     #       SELECT a * b;
-#     #     SQL
-#     #     f.volatility :immutable # :stable, :volatile (default)
-#     #     f.parallel :safe        # :restricted, :unsafe (default)
-#     #     f.security :invoker     # (default), also :definer
-#     #     f.leakproof true
-#     #     f.strict true
-#     #     f.cost 5.0
-#     #     # f.rows 1 (supported for functions returning sets of rows)
-#     #     f.comment "Multiplies 2 integers"
+#     # ```ruby
+#     # create_function "math.mult(a int, b int) int" do |f|
+#     #   f.language "sql" # (default)
+#     #   f.body <<~SQL
+#     #     SELECT a * b;
 #     #   SQL
+#     #   f.volatility :immutable # :stable, :volatile (default)
+#     #   f.parallel :safe        # :restricted, :unsafe (default)
+#     #   f.security :invoker     # (default), also :definer
+#     #   f.leakproof true
+#     #   f.strict true
+#     #   f.cost 5.0
+#     #   # f.rows 1 (supported for functions returning sets of rows)
+#     #   f.comment "Multiplies 2 integers"
+#     # SQL
+#     # ```
 #     #
 #     # With a `replace_existing: true` option,
 #     # it will be created using the `CREATE OR REPLACE` clause.
 #     # In this case the migration is irreversible because we
 #     # don't know if and how to restore its previous definition.
 #     #
-#     #   create_function "math.mult(a int, b int) int",
-#     #                   body: "SELECT a * b",
-#     #                   replace_existing: true
+#     # ```ruby
+#     # create_function "math.mult(a int, b int) int",
+#     #                 body: "SELECT a * b",
+#     #                 replace_existing: true
+#     # ```
 #     #
 #     # We presume a function without arguments should have
 #     # no arguments and return `void` like
 #     #
-#     #   # the same as "do_something() void"
-#     #   create_function "do_something" do |f|
-#     #     # ...
-#     #   end
+#     # ```ruby
+#     # # the same as "do_something() void"
+#     # create_function "do_something" do |f|
+#     #   # ...
+#     # end
+#     # ```
 #     def create_function(name, **options, &block); end
 #   end
 module PGTrunk::Operations::Functions

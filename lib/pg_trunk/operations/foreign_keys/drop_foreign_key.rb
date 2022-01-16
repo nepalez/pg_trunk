@@ -26,27 +26,33 @@
 #     #
 #     # The key can be identified by table/name (not invertible):
 #     #
-#     #   drop_foreign_key "users", name: "user_roles_fk"
+#     # ```ruby
+#     # drop_foreign_key "users", name: "user_roles_fk"
+#     # ```
 #     #
 #     # To make it invertible use the same options like
 #     # in the `add_foreign_key` operation.
 #     #
-#     #   drop_foreign_key do |k|
-#     #     k.table "users"
-#     #     k.reference "roles"
-#     #     k.column "role_id"
-#     #     k.primary_key "id"
-#     #     k.on_update :cascade
-#     #     k.on_delete :cascade
-#     #     k.comment "Phone is 10+ chars long"
-#     #   end
+#     # ```ruby
+#     # drop_foreign_key do |k|
+#     #   k.table "users"
+#     #   k.reference "roles"
+#     #   k.column "role_id"
+#     #   k.primary_key "id"
+#     #   k.on_update :cascade
+#     #   k.on_delete :cascade
+#     #   k.comment "Phone is 10+ chars long"
+#     # end
+#     # ```
 #     #
 #     # Notice that the name can be skipped, in this case we would
 #     # find it in the database.
 #     #
 #     # The operation can be called with `if_exists` option.
 #     #
-#     #   drop_foreign_key "users", name: "user_roles_fk", if_exists: true
+#     # ```ruby
+#     # drop_foreign_key "users", name: "user_roles_fk", if_exists: true
+#     # ```
 #     #
 #     # In this case the operation is always irreversible due to
 #     # uncertainty of the previous state of the database.

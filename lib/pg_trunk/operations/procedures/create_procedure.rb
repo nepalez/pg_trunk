@@ -23,37 +23,45 @@
 #     #
 #     # The procedure can be created either using inline syntax
 #     #
-#     #   create_procedure "metadata.set_foo(a int)",
-#     #                    language: :sql,
-#     #                    body: "SET foo = a",
-#     #                    comment: "Sets foo value"
+#     # ```ruby
+#     # create_procedure "metadata.set_foo(a int)",
+#     #                  language: :sql,
+#     #                  body: "SET foo = a",
+#     #                  comment: "Sets foo value"
+#     # ```
 #     #
 #     # or using a block:
 #     #
-#     #   create_procedure "metadata.set_foo(a int)" do |p|
-#     #     p.language "sql" # (default)
-#     #     p.body <<~SQL
-#     #       SET foo = a
-#     #     SQL
-#     #     p.security :invoker # (default), also :definer
-#     #     p.comment "Multiplies 2 integers"
+#     # ```ruby
+#     # create_procedure "metadata.set_foo(a int)" do |p|
+#     #   p.language "sql" # (default)
+#     #   p.body <<~SQL
+#     #     SET foo = a
 #     #   SQL
+#     #   p.security :invoker # (default), also :definer
+#     #   p.comment "Multiplies 2 integers"
+#     # SQL
+#     # ```
 #     #
 #     # With a `replace_existing: true` option,
 #     # it will be created using the `CREATE OR REPLACE` clause.
 #     # In this case the migration is irreversible because we
 #     # don't know if and how to restore its previous definition.
 #     #
-#     #   create_procedure "set_foo(a int)",
-#     #                    body: "SET foo = a",
-#     #                    replace_existing: true
+#     # ```ruby
+#     # create_procedure "set_foo(a int)",
+#     #                  body: "SET foo = a",
+#     #                  replace_existing: true
+#     # ```
 #     #
 #     # A procedure without arguments is supported as well
 #     #
-#     #   # the same as "do_something()"
-#     #   create_procedure "do_something" do |p|
-#     #     # ...
-#     #   end
+#     # ```ruby
+#     # # the same as "do_something()"
+#     # create_procedure "do_something" do |p|
+#     #   # ...
+#     # end
+#     # ```
 #     def create_procedure(name, **options, &block); end
 #   end
 module PGTrunk::Operations::Procedures

@@ -19,40 +19,48 @@
 #     #
 #     # The statistics can be created with explicit name:
 #     #
-#     #   create_statistics "users_stats" do |s|
-#     #     s.table "users"
-#     #     s.columns "family", "name"
-#     #     s.kinds :dependencies, :mcv, :ndistinct
-#     #     s.comment "Statistics for users' names and families"
-#     #   SQL
+#     # ```ruby
+#     # create_statistics "users_stats" do |s|
+#     #   s.table "users"
+#     #   s.columns "family", "name"
+#     #   s.kinds :dependencies, :mcv, :ndistinct
+#     #   s.comment "Statistics for users' names and families"
+#     # SQL
+#     # ```
 #     #
 #     # The name can be generated as well:
 #     #
-#     #   create_statistics do |s|
-#     #     s.table "users"
-#     #     s.columns "family", "name"
-#     #     s.kinds :dependencies, :mcv, :ndistinct
-#     #     s.comment "Statistics for users' names and families"
-#     #   SQL
+#     # ```ruby
+#     # create_statistics do |s|
+#     #   s.table "users"
+#     #   s.columns "family", "name"
+#     #   s.kinds :dependencies, :mcv, :ndistinct
+#     #   s.comment "Statistics for users' names and families"
+#     # SQL
+#     # ```
 #     #
 #     # Since v14 PostgreSQL have supported expressions in addition to columns:
 #     #
-#     #   create_statistics "users_stats" do |s|
-#     #     s.table "users"
-#     #     s.columns "family"
-#     #     s.expression "length(name)"
-#     #     s.kinds :dependencies, :mcv, :ndistinct
-#     #     s.comment "Statistics for users' name lengths and families"
-#     #   SQL
+#     # ```ruby
+#     # create_statistics "users_stats" do |s|
+#     #   s.table "users"
+#     #   s.columns "family"
+#     #   s.expression "length(name)"
+#     #   s.kinds :dependencies, :mcv, :ndistinct
+#     #   s.comment "Statistics for users' name lengths and families"
+#     # SQL
+#     # ```
 #     #
 #     # as well as statistics for the sole expression (kinds must be blank)
 #     # by columns of some table.
 #     #
-#     #   create_statistics "users_stats" do |s|
-#     #     s.table "users"
-#     #     s.expression "length(name || ' ' || family)"
-#     #     s.comment "Statistics for full name lengths"
-#     #   SQL
+#     # ```ruby
+#     # create_statistics "users_stats" do |s|
+#     #   s.table "users"
+#     #   s.expression "length(name || ' ' || family)"
+#     #   s.comment "Statistics for full name lengths"
+#     # SQL
+#     # ```
 #     #
 #     # Use `if_not_exists: true` to suppress error in case the statistics
 #     # has already been created. This option, though, makes the migration

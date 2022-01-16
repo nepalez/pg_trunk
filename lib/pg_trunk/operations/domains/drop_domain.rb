@@ -15,31 +15,37 @@
 #     # @yieldparam Object receiver of methods specifying the type
 #     # @return [void]
 #     #
-#     # @example:
-#     #
-#     #   drop_domain "dict.us_postal_code"
+#     # ```ruby
+#     # drop_domain "dict.us_postal_code"
+#     # ```
 #     #
 #     # To make the operation invertible, use the same options
 #     # as in the `create_domain` operation.
 #     #
-#     #   drop_domain "dict.us_postal_code", as: "string" do |d|
-#     #     d.constraint <<~SQL, name: "code_valid"
-#     #       VALUE ~ '^\d{5}$' OR VALUE ~ '^\d{5}-\d{4}$'
-#     #     SQL
-#     #     d.comment <<~COMMENT
-#     #       US postal code
-#     #     COMMENT
-#     #   end
+#     # ```ruby
+#     # drop_domain "dict.us_postal_code", as: "string" do |d|
+#     #   d.constraint <<~SQL, name: "code_valid"
+#     #     VALUE ~ '^\d{5}$' OR VALUE ~ '^\d{5}-\d{4}$'
+#     #   SQL
+#     #   d.comment <<~COMMENT
+#     #     US postal code
+#     #   COMMENT
+#     # end
+#     # ```
 #     #
 #     # With the `force: :cascade` option the operation would remove
 #     # all the objects that use the type.
 #     #
-#     #   drop_domain "dict.us_postal_code", force: :cascade
+#     # ```ruby
+#     # drop_domain "dict.us_postal_code", force: :cascade
+#     # ```
 #     #
 #     # With the `if_exists: true` option the operation won't fail
 #     # even when the view was absent in the database.
 #     #
-#     #   drop_domain "dict.us_postal_code", if_exists: true
+#     # ```ruby
+#     # drop_domain "dict.us_postal_code", if_exists: true
+#     # ```
 #     #
 #     # Both options make a migration irreversible due to uncertainty
 #     # of the previous state of the database.

@@ -88,7 +88,7 @@ The gem is targeted to support PostgreSQL-specific features, that's why we won't
 ## Documentation
 
 The gem provides a lot of additional methods to create, rename, change a drop various objects.
-You can find the necessary details in the gem's [wiki].
+You can find the necessary details [here](https://rubydoc.info/gems/pg_trunk/ActiveRecord/Migration).
 
 ## Installation
 

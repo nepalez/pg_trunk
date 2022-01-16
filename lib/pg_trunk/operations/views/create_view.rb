@@ -1,51 +1,54 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#create_view(name, **options, &block)
-# Create a view
-#
-# @param [#to_s] name (nil) The qualified name of the view
-# @option [Boolean] :replace_existing (false) If the view should overwrite an existing one
-# @option [#to_s] :sql_definition (nil) The snippet containing the query
-# @option [#to_i] :version (nil)
-#   The alternative way to set sql_definition by referencing to a file containing the snippet
-# @option [#to_s] :check (nil) Controls the behavior of automatically updatable views
-#   Supported values: :local, :cascaded
-# @option [#to_s] :comment (nil) The comment describing the view
-# @yield [Proc] the block with the view's definition
-# @yieldparam The receiver of methods specifying the view
-#
-# The operation creates the view using its `sql_definition`:
-#
-#   create_view("views.admin_users", sql_definition: <<~SQL)
-#     SELECT id, name FROM users WHERE admin;
-#   SQL
-#
-# For compatibility to the `scenic` gem, we also support
-# adding a definition via its version:
-#
-#    create_view "admin_users", version: 1
-#
-# It is expected, that a `db/views/admin_users_v01.sql`
-# to contain the SQL snippet.
-#
-# You can also set a comment describing the view, and the check option
-# (either `:local` or `:cascaded`):
-#
-#   create_view "admin_users" do |v|
-#     v.sql_definition "SELECT id, name FROM users WHERE admin;"
-#     v.check :local
-#     v.comment "Admin users only"
+# @!parse
+#   class ActiveRecord::Migration
+#     # Create a view
+#     #
+#     # @param [#to_s] name (nil) The qualified name of the view
+#     # @option [Boolean] :replace_existing (false) If the view should overwrite an existing one
+#     # @option [#to_s] :sql_definition (nil) The snippet containing the query
+#     # @option [#to_i] :version (nil)
+#     #   The alternative way to set sql_definition by referencing to a file containing the snippet
+#     # @option [#to_s] :check (nil) Controls the behavior of automatically updatable views
+#     #   Supported values: :local, :cascaded
+#     # @option [#to_s] :comment (nil) The comment describing the view
+#     # @yield [v] the block with the view's definition
+#     # @yieldparam Object receiver of methods specifying the view
+#     # @return [void]
+#     #
+#     # The operation creates the view using its `sql_definition`:
+#     #
+#     #   create_view("views.admin_users", sql_definition: <<~SQL)
+#     #     SELECT id, name FROM users WHERE admin;
+#     #   SQL
+#     #
+#     # For compatibility to the `scenic` gem, we also support
+#     # adding a definition via its version:
+#     #
+#     #    create_view "admin_users", version: 1
+#     #
+#     # It is expected, that a `db/views/admin_users_v01.sql`
+#     # to contain the SQL snippet.
+#     #
+#     # You can also set a comment describing the view, and the check option
+#     # (either `:local` or `:cascaded`):
+#     #
+#     #   create_view "admin_users" do |v|
+#     #     v.sql_definition "SELECT id, name FROM users WHERE admin;"
+#     #     v.check :local
+#     #     v.comment "Admin users only"
+#     #   end
+#     #
+#     # With the `replace_existing: true` option the operation
+#     # would use `CREATE OR REPLACE VIEW` command, so it
+#     # can be used to "update" (or reload) the existing view.
+#     #
+#     #   create_view "admin_users", version: 1, replace_existing: true
+#     #
+#     # This option makes an operation irreversible due to uncertainty
+#     # of the previous state of the database.
+#     def create_view(name, **options, &block); end
 #   end
-#
-# With the `replace_existing: true` option the operation
-# would use `CREATE OR REPLACE VIEW` command, so it
-# can be used to "update" (or reload) the existing view.
-#
-#   create_view "admin_users", version: 1, replace_existing: true
-#
-# This option makes an operation irreversible due to uncertainty
-# of the previous state of the database.
-
 module PGTrunk::Operations::Views
   # @private
   class CreateView < Base

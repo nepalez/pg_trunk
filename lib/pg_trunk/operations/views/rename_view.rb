@@ -1,25 +1,28 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#rename_view(name, **options)
-# Change the name and/or schema of a view
-#
-# @param [#to_s] :name (nil) The qualified name of the view
-# @option [#to_s] :to (nil) The new qualified name for the view
-# @option [Boolean] :if_exists (false) Suppress the error when the view is absent
-#
-# A view can be renamed by changing both the name
-# and the schema (namespace) it belongs to.
-#
-#   rename_view "views.admin_users", to: "admins"
-#
-# With the `if_exists: true` option, the operation won't fail
-# even when the view wasn't existed.
-#
-#   rename_view "views.admin_users", to: "admins", if_exists: true
-#
-# At the same time, the option makes a view irreversible
-# due to uncertainty of the previous state of the database.
-
+# @!parse
+#   class ActiveRecord::Migration
+#     # Change the name and/or schema of a view
+#     #
+#     # @param [#to_s] :name (nil) The qualified name of the view
+#     # @option [#to_s] :to (nil) The new qualified name for the view
+#     # @option [Boolean] :if_exists (false) Suppress the error when the view is absent
+#     # @return [void]
+#     #
+#     # A view can be renamed by changing both the name
+#     # and the schema (namespace) it belongs to.
+#     #
+#     #   rename_view "views.admin_users", to: "admins"
+#     #
+#     # With the `if_exists: true` option, the operation won't fail
+#     # even when the view wasn't existed.
+#     #
+#     #   rename_view "views.admin_users", to: "admins", if_exists: true
+#     #
+#     # At the same time, the option makes a view irreversible
+#     # due to uncertainty of the previous state of the database.
+#     def rename_view(name, **options); end
+#   end
 module PGTrunk::Operations::Views
   # @private
   class RenameView < Base

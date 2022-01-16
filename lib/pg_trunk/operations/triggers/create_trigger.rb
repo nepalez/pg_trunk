@@ -1,60 +1,63 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#create_trigger(table, name = nil, **options, &block)
-# Create a trigger for a table
-#
-# @param [#to_s] table (nil) The qualified name of the table
-# @param [#to_s] name (nil) The name of the trigger
-# @option [Boolean] :replace_existing (false) If the trigger should overwrite an existing one
-# @option [#to_s] :function (nil) The qualified name of the function to be called
-# @option [Symbol] :type (nil) When the trigger should be run
-#   Supported values: :before, :after, :instead_of
-# @option [Array<Symbol>] :events List of events running the trigger
-#   Supported values in the array: :insert, :update, :delete, :truncate
-# @option [Boolean] :constraint (false) If the trigger is a constraint
-# @option [Symbol] :initially (:immediate) If the constraint check should be deferred
-#   Supported values: :immediate (default), :deferred
-# @option [#to_s] :when (nil) The SQL snippet definiing a condition for the trigger
-# @option [Symbol] :for_each (:statement) Define if a trigger should be run for every row
-#   Supported values: :statement (default), :row
-# @option [#to_s] :comment (nil) The commend describing the trigger
-# @yield [Proc] the block with the trigger's definition
-# @yieldparam The receiver of methods specifying the trigger
-#
-# The trigger can be created either using inline syntax
-#
-#   create_trigger "users", "do_something",
-#                   function: "do_something()",
-#                   for_each: :row,
-#                   type: :after,
-#                   events: %i[insert update],
-#                   comment: "Does something useful"
-#
-# or using a block:
-#
-#   create_trigger do |t|
-#     t.table "users"
-#     t.name "do_something"
-#     t.function "do_something()"
-#     t.for_each :row
-#     t.type :after
-#     t.events %i[insert update]
-#     t.comment "Does something useful"
+# @!parse
+#   class ActiveRecord::Migration
+#     # Create a trigger for a table
+#     #
+#     # @param [#to_s] table (nil) The qualified name of the table
+#     # @param [#to_s] name (nil) The name of the trigger
+#     # @option [Boolean] :replace_existing (false) If the trigger should overwrite an existing one
+#     # @option [#to_s] :function (nil) The qualified name of the function to be called
+#     # @option [Symbol] :type (nil) When the trigger should be run
+#     #   Supported values: :before, :after, :instead_of
+#     # @option [Array<Symbol>] :events List of events running the trigger
+#     #   Supported values in the array: :insert, :update, :delete, :truncate
+#     # @option [Boolean] :constraint (false) If the trigger is a constraint
+#     # @option [Symbol] :initially (:immediate) If the constraint check should be deferred
+#     #   Supported values: :immediate (default), :deferred
+#     # @option [#to_s] :when (nil) The SQL snippet definiing a condition for the trigger
+#     # @option [Symbol] :for_each (:statement) Define if a trigger should be run for every row
+#     #   Supported values: :statement (default), :row
+#     # @option [#to_s] :comment (nil) The commend describing the trigger
+#     # @yield [t] the block with the trigger's definition
+#     # @yieldparam Object receiver of methods specifying the trigger
+#     # @return [void]
+#     #
+#     # The trigger can be created either using inline syntax
+#     #
+#     #   create_trigger "users", "do_something",
+#     #                   function: "do_something()",
+#     #                   for_each: :row,
+#     #                   type: :after,
+#     #                   events: %i[insert update],
+#     #                   comment: "Does something useful"
+#     #
+#     # or using a block:
+#     #
+#     #   create_trigger do |t|
+#     #     t.table "users"
+#     #     t.name "do_something"
+#     #     t.function "do_something()"
+#     #     t.for_each :row
+#     #     t.type :after
+#     #     t.events %i[insert update]
+#     #     t.comment "Does something useful"
+#     #   end
+#     #
+#     # With a `replace_existing: true` option,
+#     # it will be created using the `CREATE OR REPLACE` clause.
+#     # (Available in PostgreSQL v14+).
+#     #
+#     #    create_trigger "users", "do_something",
+#     #                   function: "do_something()",
+#     #                   type: :after,
+#     #                   events: %i[insert update],
+#     #                   replace_previous: true
+#     #
+#     # In this case the migration is irreversible because we
+#     # don't know if and how to restore its previous definition.
+#     def create_trigger(table, name = nil, **options, &block); end
 #   end
-#
-# With a `replace_existing: true` option,
-# it will be created using the `CREATE OR REPLACE` clause.
-# (Available in PostgreSQL v14+).
-#
-#    create_trigger "users", "do_something",
-#                   function: "do_something()",
-#                   type: :after,
-#                   events: %i[insert update],
-#                   replace_previous: true
-#
-# In this case the migration is irreversible because we
-# don't know if and how to restore its previous definition.
-
 module PGTrunk::Operations::Triggers
   # @private
   class CreateTrigger < Base

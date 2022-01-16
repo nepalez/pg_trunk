@@ -1,70 +1,73 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#create_function(name, **options, &block)
-# Create a function
-#
-# @param [#to_s] name (nil)
-#   The qualified name of the function with arguments and returned value type
-# @option [Boolean] :replace_existing (false) If the function should overwrite an existing one
-# @option [#to_s] :language ("sql") The language (like "sql" or "plpgsql")
-# @option [#to_s] :body (nil) The body of the function
-# @option [Symbol] :volatility (:volatile) The volatility of the function.
-#   Supported values: :volatile (default), :stable, :immutable
-# @option [Symbol] :parallel (:unsafe) The safety of parallel execution.
-#   Supported values: :unsafe (default), :restricted, :safe
-# @option [Symbol] :security (:invoker) Define the role under which the function is invoked
-#   Supported values: :invoker (default), :definer
-# @option [Boolean] :leakproof (false) If the function is leakproof
-# @option [Boolean] :strict (false) If the function is strict
-# @option [Float] :cost (nil) The cost estimation for the function
-# @option [Integer] :rows (nil) The number of rows returned by a function
-# @option [#to_s] :comment The description of the function
-# @yield [Proc] the block with the function's definition
-# @yieldparam The receiver of methods specifying the function
-#
-# The function can be created either using inline syntax
-#
-#   create_function "math.mult(a int, b int) int",
-#                   language: :sql,
-#                   body: "SELECT a * b",
-#                   volatility: :immutable,
-#                   leakproof: true,
-#                   comment: "Multiplies 2 integers"
-#
-# or using a block:
-#
-#   create_function "math.mult(a int, b int) int" do |f|
-#     f.language "sql" # (default)
-#     f.body <<~SQL
-#       SELECT a * b;
-#     SQL
-#     f.volatility :immutable # :stable, :volatile (default)
-#     f.parallel :safe        # :restricted, :unsafe (default)
-#     f.security :invoker     # (default), also :definer
-#     f.leakproof true
-#     f.strict true
-#     f.cost 5.0
-#     # f.rows 1 (supported for functions returning sets of rows)
-#     f.comment "Multiplies 2 integers"
-#   SQL
-#
-# With a `replace_existing: true` option,
-# it will be created using the `CREATE OR REPLACE` clause.
-# In this case the migration is irreversible because we
-# don't know if and how to restore its previous definition.
-#
-#   create_function "math.mult(a int, b int) int",
-#                   body: "SELECT a * b",
-#                   replace_existing: true
-#
-# We presume a function without arguments should have
-# no arguments and return `void` like
-#
-#   # the same as "do_something() void"
-#   create_function "do_something" do |f|
-#     # ...
+# @!parse
+#   class ActiveRecord::Migration
+#     # Create a function
+#     #
+#     # @param [#to_s] name (nil)
+#     #   The qualified name of the function with arguments and returned value type
+#     # @option [Boolean] :replace_existing (false) If the function should overwrite an existing one
+#     # @option [#to_s] :language ("sql") The language (like "sql" or "plpgsql")
+#     # @option [#to_s] :body (nil) The body of the function
+#     # @option [Symbol] :volatility (:volatile) The volatility of the function.
+#     #   Supported values: :volatile (default), :stable, :immutable
+#     # @option [Symbol] :parallel (:unsafe) The safety of parallel execution.
+#     #   Supported values: :unsafe (default), :restricted, :safe
+#     # @option [Symbol] :security (:invoker) Define the role under which the function is invoked
+#     #   Supported values: :invoker (default), :definer
+#     # @option [Boolean] :leakproof (false) If the function is leakproof
+#     # @option [Boolean] :strict (false) If the function is strict
+#     # @option [Float] :cost (nil) The cost estimation for the function
+#     # @option [Integer] :rows (nil) The number of rows returned by a function
+#     # @option [#to_s] :comment The description of the function
+#     # @yield [f] the block with the function's definition
+#     # @yieldparam Object receiver of methods specifying the function
+#     # @return [void]
+#     #
+#     # The function can be created either using inline syntax
+#     #
+#     #   create_function "math.mult(a int, b int) int",
+#     #                   language: :sql,
+#     #                   body: "SELECT a * b",
+#     #                   volatility: :immutable,
+#     #                   leakproof: true,
+#     #                   comment: "Multiplies 2 integers"
+#     #
+#     # or using a block:
+#     #
+#     #   create_function "math.mult(a int, b int) int" do |f|
+#     #     f.language "sql" # (default)
+#     #     f.body <<~SQL
+#     #       SELECT a * b;
+#     #     SQL
+#     #     f.volatility :immutable # :stable, :volatile (default)
+#     #     f.parallel :safe        # :restricted, :unsafe (default)
+#     #     f.security :invoker     # (default), also :definer
+#     #     f.leakproof true
+#     #     f.strict true
+#     #     f.cost 5.0
+#     #     # f.rows 1 (supported for functions returning sets of rows)
+#     #     f.comment "Multiplies 2 integers"
+#     #   SQL
+#     #
+#     # With a `replace_existing: true` option,
+#     # it will be created using the `CREATE OR REPLACE` clause.
+#     # In this case the migration is irreversible because we
+#     # don't know if and how to restore its previous definition.
+#     #
+#     #   create_function "math.mult(a int, b int) int",
+#     #                   body: "SELECT a * b",
+#     #                   replace_existing: true
+#     #
+#     # We presume a function without arguments should have
+#     # no arguments and return `void` like
+#     #
+#     #   # the same as "do_something() void"
+#     #   create_function "do_something" do |f|
+#     #     # ...
+#     #   end
+#     def create_function(name, **options, &block); end
 #   end
-
 module PGTrunk::Operations::Functions
   # @private
   class CreateFunction < Base

@@ -1,53 +1,56 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#change_domain(name, &block)
-# Modify a domain type
-#
-# @param [#to_s] name (nil) The qualified name of the type
-# @yield [Proc] the block with the type's definition
-# @yieldparam The receiver of methods specifying the type
-#
-# The operation can be used to add or remove constraints,
-# modify the default_sql value, or the description of the domain type.
-# Neither the underlying type nor the collation can be changed.
-#
-#   change_domain "dict.us_postal_code" do |d|
-#     d.null true # from: false
-#     # check is added for inversion
-#     d.drop_constraint "postal_code_length", check: <<~SQL
-#       length(VALUE) > 3 AND length(VALUE) < 6
-#     SQL
-#     d.add_constraint <<~SQL, name: "postal_code_valid"
-#       VALUE ~ '^\d{5}$' OR VALUE ~ '^\d{5}-\d{4}$'
-#     SQL
-#     d.default_sql "'00000'::text", from: "'0000'::text"
-#     d.comment <<~COMMENT, from: <<~COMMENT
-#       Supported currencies
-#     COMMENT
-#       Currencies
-#     COMMENT
+# @!parse
+#   class ActiveRecord::Migration
+#     # Modify a domain type
+#     #
+#     # @param [#to_s] name (nil) The qualified name of the type
+#     # @yield [d] the block with the type's definition
+#     # @yieldparam Object receiver of methods specifying the type
+#     # @return [void]
+#     #
+#     # The operation can be used to add or remove constraints,
+#     # modify the default_sql value, or the description of the domain type.
+#     # Neither the underlying type nor the collation can be changed.
+#     #
+#     #   change_domain "dict.us_postal_code" do |d|
+#     #     d.null true # from: false
+#     #     # check is added for inversion
+#     #     d.drop_constraint "postal_code_length", check: <<~SQL
+#     #       length(VALUE) > 3 AND length(VALUE) < 6
+#     #     SQL
+#     #     d.add_constraint <<~SQL, name: "postal_code_valid"
+#     #       VALUE ~ '^\d{5}$' OR VALUE ~ '^\d{5}-\d{4}$'
+#     #     SQL
+#     #     d.default_sql "'00000'::text", from: "'0000'::text"
+#     #     d.comment <<~COMMENT, from: <<~COMMENT
+#     #       Supported currencies
+#     #     COMMENT
+#     #       Currencies
+#     #     COMMENT
+#     #   end
+#     #
+#     # Use blank string (not a `nil` value) to reset either a default_sql,
+#     # or the comment. `nil`-s here will be ignored.
+#     #
+#     # When dropping a constraint you can use a `check` expression.
+#     # In the same manner, use `from` option with `comment` or `default_sql`
+#     # to make the operation invertible.
+#     #
+#     # It is irreversible in case any `drop_constraint` clause
+#     # has `if_exists: true` or `force: :cascade` option -- due to
+#     # uncertainty of the previous state of the database:
+#     #
+#     #   # Irreversible change
+#     #   change_domain "dict.us_postal_code", force: :cascade do |d|
+#     #     d.drop_constraint "postal_code_valid" # missed `:check` option
+#     #     d.drop_constraint "postal_code_length"
+#     #     d.drop_constraint "postal_code_format", if_exists: true
+#     #     d.default_sql "'0000'::text" # missed `:from` option
+#     #     d.comment "New comment" # missed `:from` option
+#     #   end
+#     def change_domain(name, &block); end
 #   end
-#
-# Use blank string (not a `nil` value) to reset either a default_sql,
-# or the comment. `nil`-s here will be ignored.
-#
-# When dropping a constraint you can use a `check` expression.
-# In the same manner, use `from` option with `comment` or `default_sql`
-# to make the operation invertible.
-#
-# It is irreversible in case any `drop_constraint` clause
-# has `if_exists: true` or `force: :cascade` option -- due to
-# uncertainty of the previous state of the database:
-#
-#   # Irreversible change
-#   change_domain "dict.us_postal_code", force: :cascade do |d|
-#     d.drop_constraint "postal_code_valid" # missed `:check` option
-#     d.drop_constraint "postal_code_length"
-#     d.drop_constraint "postal_code_format", if_exists: true
-#     d.default_sql "'0000'::text" # missed `:from` option
-#     d.comment "New comment" # missed `:from` option
-#   end
-
 module PGTrunk::Operations::Domains
   # @private
   class ChangeDomain < Base

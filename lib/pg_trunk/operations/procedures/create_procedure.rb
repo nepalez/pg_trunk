@@ -1,58 +1,61 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#create_procedure(name, **options, &block)
-# Create a procedure
-#
-# @param [#to_s] name (nil)
-#   The qualified name of the procedure with arguments and returned value type
-# @option [Boolean] :replace_existing (false) If the procedure should overwrite an existing one
-# @option [#to_s] :language ("sql") The language (like "sql" or "plpgsql")
-# @option [#to_s] :body (nil) The body of the procedure
-# @option [Symbol] :security (:invoker) Define the role under which the procedure is invoked
-#   Supported values: :invoker (default), :definer
-# @option [#to_s] :comment The description of the procedure
-# @yield [Proc] the block with the procedure's definition
-# @yieldparam The receiver of methods specifying the procedure
-#
-# The syntax of the operation is the same as for `create_function`,
-# but with only `security` option available. Notice, that
-# procedures cannot return values so you're expected not to
-# define a returned value as well.
-#
-# The procedure can be created either using inline syntax
-#
-#   create_procedure "metadata.set_foo(a int)",
-#                    language: :sql,
-#                    body: "SET foo = a",
-#                    comment: "Sets foo value"
-#
-# or using a block:
-#
-#   create_procedure "metadata.set_foo(a int)" do |p|
-#     p.language "sql" # (default)
-#     p.body <<~SQL
-#       SET foo = a
-#     SQL
-#     p.security :invoker # (default), also :definer
-#     p.comment "Multiplies 2 integers"
-#   SQL
-#
-# With a `replace_existing: true` option,
-# it will be created using the `CREATE OR REPLACE` clause.
-# In this case the migration is irreversible because we
-# don't know if and how to restore its previous definition.
-#
-#   create_procedure "set_foo(a int)",
-#                    body: "SET foo = a",
-#                    replace_existing: true
-#
-# A procedure without arguments is supported as well
-#
-#   # the same as "do_something()"
-#   create_procedure "do_something" do |p|
-#     # ...
+# @!parse
+#   class ActiveRecord::Migration
+#     # Create a procedure
+#     #
+#     # @param [#to_s] name (nil)
+#     #   The qualified name of the procedure with arguments and returned value type
+#     # @option [Boolean] :replace_existing (false) If the procedure should overwrite an existing one
+#     # @option [#to_s] :language ("sql") The language (like "sql" or "plpgsql")
+#     # @option [#to_s] :body (nil) The body of the procedure
+#     # @option [Symbol] :security (:invoker) Define the role under which the procedure is invoked
+#     #   Supported values: :invoker (default), :definer
+#     # @option [#to_s] :comment The description of the procedure
+#     # @yield [p] the block with the procedure's definition
+#     # @yieldparam Object receiver of methods specifying the procedure
+#     # @return [void]
+#     #
+#     # The syntax of the operation is the same as for `create_function`,
+#     # but with only `security` option available. Notice, that
+#     # procedures cannot return values so you're expected not to
+#     # define a returned value as well.
+#     #
+#     # The procedure can be created either using inline syntax
+#     #
+#     #   create_procedure "metadata.set_foo(a int)",
+#     #                    language: :sql,
+#     #                    body: "SET foo = a",
+#     #                    comment: "Sets foo value"
+#     #
+#     # or using a block:
+#     #
+#     #   create_procedure "metadata.set_foo(a int)" do |p|
+#     #     p.language "sql" # (default)
+#     #     p.body <<~SQL
+#     #       SET foo = a
+#     #     SQL
+#     #     p.security :invoker # (default), also :definer
+#     #     p.comment "Multiplies 2 integers"
+#     #   SQL
+#     #
+#     # With a `replace_existing: true` option,
+#     # it will be created using the `CREATE OR REPLACE` clause.
+#     # In this case the migration is irreversible because we
+#     # don't know if and how to restore its previous definition.
+#     #
+#     #   create_procedure "set_foo(a int)",
+#     #                    body: "SET foo = a",
+#     #                    replace_existing: true
+#     #
+#     # A procedure without arguments is supported as well
+#     #
+#     #   # the same as "do_something()"
+#     #   create_procedure "do_something" do |p|
+#     #     # ...
+#     #   end
+#     def create_procedure(name, **options, &block); end
 #   end
-
 module PGTrunk::Operations::Procedures
   # @private
   class CreateProcedure < Base

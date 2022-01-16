@@ -1,38 +1,41 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#change_enum(name, &block)
-# Modify an enumerated type
-#
-# @param [#to_s] name (nil) The qualified name of the type
-# @yield [Proc] the block with the type's definition
-# @yieldparam The receiver of methods specifying the type
-#
-# The operation can be used to rename or add values to the
-# enumerated type. The commend can be changed as well.
-#
-#   change_enum "currencies" do |e|
-#     e.add_value "EUR", after: "BTC"
-#     e.add_value "GBP", before: "usd"
-#     e.add_value "JPY" # to the end of the list
-#     e.rename_value "usd", to: "USD"
-#     e.comment <<~COMMENT, from: <<~COMMENT
-#       Supported currencies
-#     COMMENT
-#       Currencies
-#     COMMENT
+# @!parse
+#   class ActiveRecord::Migration
+#     # Modify an enumerated type
+#     #
+#     # @param [#to_s] name (nil) The qualified name of the type
+#     # @yield [e] the block with the type's definition
+#     # @yieldparam Object receiver of methods specifying the type
+#     # @return [void]
+#     #
+#     # The operation can be used to rename or add values to the
+#     # enumerated type. The commend can be changed as well.
+#     #
+#     #   change_enum "currencies" do |e|
+#     #     e.add_value "EUR", after: "BTC"
+#     #     e.add_value "GBP", before: "usd"
+#     #     e.add_value "JPY" # to the end of the list
+#     #     e.rename_value "usd", to: "USD"
+#     #     e.comment <<~COMMENT, from: <<~COMMENT
+#     #       Supported currencies
+#     #     COMMENT
+#     #       Currencies
+#     #     COMMENT
+#     #   end
+#     #
+#     # Please, keep in mind that all values will be added before
+#     # the first rename. That's why you should use old values
+#     # (like the `usd` instead of the `USD` in the example above)
+#     # in `before` and `after` options.
+#     #
+#     # Also notice that PostgreSQL doesn't support value deletion,
+#     # that's why adding any value makes the migration irreversible.
+#     #
+#     # It is also irreversible if you changed the comment, but
+#     # not defined its previous value.
+#     def change_enum(name, &block); end
 #   end
-#
-# Please, keep in mind that all values will be added before
-# the first rename. That's why you should use old values
-# (like the `usd` instead of the `USD` in the example above)
-# in `before` and `after` options.
-#
-# Also notice that PostgreSQL doesn't support value deletion,
-# that's why adding any value makes the migration irreversible.
-#
-# It is also irreversible if you changed the comment, but
-# not defined its previous value.
-
 module PGTrunk::Operations::Enums
   # @private
   class ChangeEnum < Base

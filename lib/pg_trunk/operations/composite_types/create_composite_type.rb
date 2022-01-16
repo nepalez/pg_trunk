@@ -1,25 +1,28 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#create_composite_type(name, **options, &block)
-# Create a composite type
-#
-# @param [#to_s] name (nil) The qualified name of the type
-# @option [#to_s] :comment (nil) The comment describing the constraint
-# @yield [Proc] the block with the type's definition
-# @yieldparam The receiver of methods specifying the type
-#
-# @example
-#   create_composite_type "paint.colored_point" do |d|
-#     d.column "x", "integer"
-#     d.column "y", "integer"
-#     d.column "color", "text", collation: "en_US"
-#     d.comment <<~COMMENT
-#       2D point with color
-#     COMMENT
+# @!parse
+#   class ActiveRecord::Migration
+#     # Create a composite type
+#     #
+#     # @param [#to_s] name (nil) The qualified name of the type
+#     # @option [#to_s] :comment (nil) The comment describing the constraint
+#     # @yield [t] the block with the type's definition
+#     # @yieldparam Object receiver of methods specifying the type
+#     # @return [void]
+#     #
+#     # @example
+#     #   create_composite_type "paint.colored_point" do |d|
+#     #     d.column "x", "integer"
+#     #     d.column "y", "integer"
+#     #     d.column "color", "text", collation: "en_US"
+#     #     d.comment <<~COMMENT
+#     #       2D point with color
+#     #     COMMENT
+#     #   end
+#     #
+#     # It is always reversible.
+#     def create_composite_type(name, **options, &block); end
 #   end
-#
-# It is always reversible.
-
 module PGTrunk::Operations::CompositeTypes
   # @private
   class CreateCompositeType < Base

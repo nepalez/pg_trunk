@@ -1,54 +1,57 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#drop_foreign_key(table, reference, **options, &block)
-# Drops a foreign key constraint
-#
-# @param [#to_s] table (nil) The qualified name of the table
-# @param [#to_s] reference (nil) The qualified name of the reference table
-# @option [#to_s] :name (nil) The current name of the foreign key
-# @option [Boolean] :if_exists (false) Suppress the error when the constraint is absent
-# @option [#to_s] :to (nil) The new name for the foreign key
-# @option [Array<#to_s>] :columns ([]) The list of columns of the table
-# @option [#to_s] :column (nil) An alias for :columns for the case of single-column keys
-# @option [Array<#to_s>] :primary_key ([]) The list of columns of the reference table
-# @option [Symbol] :match (:full) Define how to match rows
-#   Supported values: :full (default), :partial, :simple
-# @option [Symbol] :on_delete (:restrict)
-#   Define how to handle the deletion of the referred row.
-#   Supported values: :restrict (default), :cascade, :nullify, :reset
-# @option [Symbol] :on_update (:restrict)
-#   Define how to handle the update of the referred row.
-#   Supported values: :restrict (default), :cascade, :nullify, :reset
-# @yield [Proc] the block with the key's definition
-# @yieldparam The receiver of methods specifying the foreign key
-#
-# The key can be identified by table/name (not invertible):
-#
-#   drop_foreign_key "users", name: "user_roles_fk"
-#
-# To make it invertible use the same options like
-# in the `add_foreign_key` operation.
-#
-#   drop_foreign_key do |c|
-#     c.table "users"
-#     c.reference "roles"
-#     c.column "role_id"
-#     c.primary_key "id"
-#     c.on_update :cascade
-#     c.on_delete :cascade
-#     c.comment "Phone is 10+ chars long"
+# @!parse
+#   class ActiveRecord::Migration
+#     # Drops a foreign key constraint
+#     #
+#     # @param [#to_s] table (nil) The qualified name of the table
+#     # @param [#to_s] reference (nil) The qualified name of the reference table
+#     # @option [#to_s] :name (nil) The current name of the foreign key
+#     # @option [Boolean] :if_exists (false) Suppress the error when the constraint is absent
+#     # @option [#to_s] :to (nil) The new name for the foreign key
+#     # @option [Array<#to_s>] :columns ([]) The list of columns of the table
+#     # @option [#to_s] :column (nil) An alias for :columns for the case of single-column keys
+#     # @option [Array<#to_s>] :primary_key ([]) The list of columns of the reference table
+#     # @option [Symbol] :match (:full) Define how to match rows
+#     #   Supported values: :full (default), :partial, :simple
+#     # @option [Symbol] :on_delete (:restrict)
+#     #   Define how to handle the deletion of the referred row.
+#     #   Supported values: :restrict (default), :cascade, :nullify, :reset
+#     # @option [Symbol] :on_update (:restrict)
+#     #   Define how to handle the update of the referred row.
+#     #   Supported values: :restrict (default), :cascade, :nullify, :reset
+#     # @yield [k] the block with the key's definition
+#     # @yieldparam Object receiver of methods specifying the foreign key
+#     # @return [void]
+#     #
+#     # The key can be identified by table/name (not invertible):
+#     #
+#     #   drop_foreign_key "users", name: "user_roles_fk"
+#     #
+#     # To make it invertible use the same options like
+#     # in the `add_foreign_key` operation.
+#     #
+#     #   drop_foreign_key do |k|
+#     #     k.table "users"
+#     #     k.reference "roles"
+#     #     k.column "role_id"
+#     #     k.primary_key "id"
+#     #     k.on_update :cascade
+#     #     k.on_delete :cascade
+#     #     k.comment "Phone is 10+ chars long"
+#     #   end
+#     #
+#     # Notice that the name can be skipped, in this case we would
+#     # find it in the database.
+#     #
+#     # The operation can be called with `if_exists` option.
+#     #
+#     #   drop_foreign_key "users", name: "user_roles_fk", if_exists: true
+#     #
+#     # In this case the operation is always irreversible due to
+#     # uncertainty of the previous state of the database.
+#     def drop_foreign_key(table, reference, **options, &block); end
 #   end
-#
-# Notice that the name can be skipped, in this case we would
-# find it in the database.
-#
-# The operation can be called with `if_exists` option.
-#
-#   drop_foreign_key "users", name: "user_roles_fk", if_exists: true
-#
-# In this case the operation is always irreversible due to
-# uncertainty of the previous state of the database.
-
 module PGTrunk::Operations::ForeignKeys
   # @private
   class DropForeignKey < Base

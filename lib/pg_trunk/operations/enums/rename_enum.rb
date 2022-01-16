@@ -1,17 +1,20 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#rename_enum(name, to:)
-# Change the name and/or schema of an enumerated type
-#
-# @param [#to_s] :name (nil) The qualified name of the type
-# @option [#to_s] :to (nil) The new qualified name for the type
-#
-# @example:
-#
-#   rename_enum "currencies", to: "finances.currency"
-#
-# The operation is always reversible.
-
+# @!parse
+#   class ActiveRecord::Migration
+#     # Change the name and/or schema of an enumerated type
+#     #
+#     # @param [#to_s] :name (nil) The qualified name of the type
+#     # @option [#to_s] :to (nil) The new qualified name for the type
+#     # @return [void]
+#     #
+#     # @example:
+#     #
+#     #   rename_enum "currencies", to: "finances.currency"
+#     #
+#     # The operation is always reversible.
+#     def rename_enum(name, to:); end
+#   end
 module PGTrunk::Operations::Enums
   # @private
   class RenameEnum < Base

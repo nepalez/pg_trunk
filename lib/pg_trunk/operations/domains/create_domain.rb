@@ -1,31 +1,34 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#create_domain(name, **options, &block)
-# Create a domain type
-#
-# @param [#to_s] name (nil) The qualified name of the type
-# @option [#to_s] :as (nil) The base type for the domain (alias: :type)
-# @option [#to_s] :collation (nil) The collation
-# @option [Boolean] :null (true) If a value of this type can be NULL
-# @option [#to_s] :default_sql (nil) The snippet for the default value of the domain
-# @option [#to_s] :comment (nil) The comment describing the constraint
-# @yield [Proc] the block with the type's definition
-# @yieldparam The receiver of methods specifying the type
-#
-# @example:
-#
-#   create_domain "dict.us_postal_code", as: "text" do |d|
-#     d.collation "en_US"
-#     d.default_sql "'0000'::text"
-#     d.null false
-#     d.constraint <<~SQL, name: "code_valid"
-#       VALUE ~ '^\d{5}$' OR VALUE ~ '^\d{5}-\d{4}$'
-#     SQL
-#     d.comment "US postal code"
+# @!parse
+#   class ActiveRecord::Migration
+#     # Create a domain type
+#     #
+#     # @param [#to_s] name (nil) The qualified name of the type
+#     # @option [#to_s] :as (nil) The base type for the domain (alias: :type)
+#     # @option [#to_s] :collation (nil) The collation
+#     # @option [Boolean] :null (true) If a value of this type can be NULL
+#     # @option [#to_s] :default_sql (nil) The snippet for the default value of the domain
+#     # @option [#to_s] :comment (nil) The comment describing the constraint
+#     # @yield [d] the block with the type's definition
+#     # @yieldparam Object receiver of methods specifying the type
+#     # @return [void]
+#     #
+#     # @example:
+#     #
+#     #   create_domain "dict.us_postal_code", as: "text" do |d|
+#     #     d.collation "en_US"
+#     #     d.default_sql "'0000'::text"
+#     #     d.null false
+#     #     d.constraint <<~SQL, name: "code_valid"
+#     #       VALUE ~ '^\d{5}$' OR VALUE ~ '^\d{5}-\d{4}$'
+#     #     SQL
+#     #     d.comment "US postal code"
+#     #   end
+#     #
+#     # It is always reversible.
+#     def create_domain(name, **options, &block); end
 #   end
-#
-# It is always reversible.
-
 module PGTrunk::Operations::Domains
   # @private
   class CreateDomain < Base

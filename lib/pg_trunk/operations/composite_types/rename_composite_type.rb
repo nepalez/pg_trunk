@@ -1,17 +1,20 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#rename_composite_type(name, to:)
-# Change the name and/or schema of a composite type
-#
-# @param [#to_s] name (nil) The qualified name of the type
-# @option [#to_s] :to (nil) The new qualified name for the type
-#
-# @example
-#
-#   rename_composite_type "point", to: "paint.colored_point"
-#
-# The operation is always reversible.
-
+# @!parse
+#   class ActiveRecord::Migration
+#     # Change the name and/or schema of a composite type
+#     #
+#     # @param [#to_s] name (nil) The qualified name of the type
+#     # @option [#to_s] :to (nil) The new qualified name for the type
+#     # @return [void]
+#     #
+#     # @example
+#     #
+#     #   rename_composite_type "point", to: "paint.colored_point"
+#     #
+#     # The operation is always reversible.
+#     def rename_composite_type(name, to:); end
+#   end
 module PGTrunk::Operations::CompositeTypes
   # @private
   class RenameCompositeType < Base

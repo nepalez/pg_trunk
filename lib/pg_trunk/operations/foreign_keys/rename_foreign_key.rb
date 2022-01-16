@@ -1,34 +1,37 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#rename_foreign_key(table, reference, **options, &block)
-# Rename a foreign key
-#
-# @param [#to_s] table (nil) The qualified name of the table
-# @param [#to_s] reference (nil) The qualified name of the reference table
-# @option [#to_s] :name (nil) The current name of the foreign key
-# @option [#to_s] :to (nil) The new name for the foreign key
-# @option [Array<#to_s>] :columns ([]) The list of columns of the table
-# @option [#to_s] :column (nil) An alias for :columns for the case of single-column keys
-# @option [Array<#to_s>] :primary_key ([]) The list of columns of the reference table
-# @yield [Proc] the block with the key's definition
-# @yieldparam The receiver of methods specifying the foreign key
-#
-# You can rename the foreign key constraint identified by its explicit name:
-#
-#   rename_foreign_key :users,
-#                      name: "user_roles_fk",
-#                      to: "constraints.users_by_roles_fk"
-#
-# The key can also be found in the database by table/reference/columns/pk
-#
-#   rename_foreign_key :users, :roles, primary_key: "name", to: "user_roles"
-#
-# If a new name is missed, then the name will be reset to the auto-generated one:
-#
-#   rename_foreign_key :users, "user_roles_fk"
-#
-# The operation is always reversible.
-
+# @!parse
+#   class ActiveRecord::Migration
+#     # Rename a foreign key
+#     #
+#     # @param [#to_s] table (nil) The qualified name of the table
+#     # @param [#to_s] reference (nil) The qualified name of the reference table
+#     # @option [#to_s] :name (nil) The current name of the foreign key
+#     # @option [#to_s] :to (nil) The new name for the foreign key
+#     # @option [Array<#to_s>] :columns ([]) The list of columns of the table
+#     # @option [#to_s] :column (nil) An alias for :columns for the case of single-column keys
+#     # @option [Array<#to_s>] :primary_key ([]) The list of columns of the reference table
+#     # @yield [k] the block with the key's definition
+#     # @yieldparam Object receiver of methods specifying the foreign key
+#     # @return [void]
+#     #
+#     # You can rename the foreign key constraint identified by its explicit name:
+#     #
+#     #   rename_foreign_key :users,
+#     #                      name: "user_roles_fk",
+#     #                      to: "constraints.users_by_roles_fk"
+#     #
+#     # The key can also be found in the database by table/reference/columns/pk
+#     #
+#     #   rename_foreign_key :users, :roles, primary_key: "name", to: "user_roles"
+#     #
+#     # If a new name is missed, then the name will be reset to the auto-generated one:
+#     #
+#     #   rename_foreign_key :users, "user_roles_fk"
+#     #
+#     # The operation is always reversible.
+#     def rename_foreign_key(table, reference, **options, &block); end
+#   end
 module PGTrunk::Operations::ForeignKeys
   #
   # Definition for the `rename_foreign_key` operation

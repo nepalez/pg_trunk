@@ -1,56 +1,59 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#change_composite_type(name, **options, &block)
-# Modify a composite type
-#
-# @param [#to_s] name (nil) The qualified name of the type
-# @option [Symbol] :force (:restrict) How to process dependent objects (`:cascade` or `:restrict`)
-# @option [#to_s] :comment (nil) The comment describing the constraint
-# @yield [Proc] the block with the type's definition
-# @yieldparam The receiver of methods specifying the type
-#
-# The operation can be used to add, drop, rename or change columns.
-# The comment can be changed as well.
-#
-# Providing a type "paint.colored_point":
-#
-#   create_composite_type "paint.colored_point" do |t|
-#     t.column "color", "text", collation: "en_US"
-#     t.column "x", "integer"
-#     t.column "z", "integer"
+# @!parse
+#   class ActiveRecord::Migration
+#     # Modify a composite type
+#     #
+#     # @param [#to_s] name (nil) The qualified name of the type
+#     # @option [Symbol] :force (:restrict) How to process dependent objects (`:cascade` or `:restrict`)
+#     # @option [#to_s] :comment (nil) The comment describing the constraint
+#     # @yield [t] the block with the type's definition
+#     # @yieldparam Object receiver of methods specifying the type
+#     # @return [void]
+#     #
+#     # The operation can be used to add, drop, rename or change columns.
+#     # The comment can be changed as well.
+#     #
+#     # Providing a type "paint.colored_point":
+#     #
+#     #   create_composite_type "paint.colored_point" do |t|
+#     #     t.column "color", "text", collation: "en_US"
+#     #     t.column "x", "integer"
+#     #     t.column "z", "integer"
+#     #   end
+#     #
+#     # After the following change:
+#     #
+#     #   change_composite_type "paint.colored_point" do |t|
+#     #     t.change_column "color", "text", collation: "ru_RU", from_collation: "en_US"
+#     #     t.change_column "x", "bigint", from_type: "integer"
+#     #     t.drop_column "z", "integer"
+#     #     t.add_column "Y", "bigint"
+#     #     t.rename_column "x", to: "X"
+#     #     t.comment "2D point with a color", from: "2D point"
+#     #   end
+#     #
+#     # The definition became:
+#     #
+#     #   create_composite_type "paint.colored_point" do |t|
+#     #     t.column "color", "text", collation: "ru_RU"
+#     #     t.column "X", "bigint"
+#     #     t.column "Y", "integer"
+#     #   end
+#     #
+#     # Notice, that all renames will be done AFTER other changes,
+#     # so in `change_column` you should use the old names.
+#     #
+#     # In several cases the operation is not invertible:
+#     #
+#     # - when a column was dropped
+#     # - when `force: :cascade` option is used (to update
+#     #   objects that use the type)
+#     # - when `if_exists: true` is added to the `drop_column` clause
+#     # - when a previous state of the column type, collation or comment
+#     #   is not specified.
+#     def change_composite_type(name, **options, &block); end
 #   end
-#
-# After the following change:
-#
-#   change_composite_type "paint.colored_point" do |t|
-#     t.change_column "color", "text", collation: "ru_RU", from_collation: "en_US"
-#     t.change_column "x", "bigint", from_type: "integer"
-#     t.drop_column "z", "integer"
-#     t.add_column "Y", "bigint"
-#     t.rename_column "x", to: "X"
-#     t.comment "2D point with a color", from: "2D point"
-#   end
-#
-# The definition became:
-#
-#   create_composite_type "paint.colored_point" do |t|
-#     t.column "color", "text", collation: "ru_RU"
-#     t.column "X", "bigint"
-#     t.column "Y", "integer"
-#   end
-#
-# Notice, that all renames will be done AFTER other changes,
-# so in `change_column` you should use the old names.
-#
-# In several cases the operation is not invertible:
-#
-# - when a column was dropped
-# - when `force: :cascade` option is used (to update
-#   objects that use the type)
-# - when `if_exists: true` is added to the `drop_column` clause
-# - when a previous state of the column type, collation or comment
-#   is not specified.
-
 module PGTrunk::Operations::CompositeTypes
   # @private
   class ChangeCompositeType < Base

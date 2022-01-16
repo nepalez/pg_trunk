@@ -1,24 +1,27 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#create_trigger(table, name = nil, **options, &block)
-# Create a trigger for a table
-#
-# @param [#to_s] table (nil) The qualified name of the table
-# @param [#to_s] name (nil) The name of the trigger
-# @option [Boolean] :if_exists (false) Suppress the error when the trigger is absent
-# @yield [Proc] the block with the trigger's definition
-# @yieldparam The receiver of methods specifying the trigger
-#
-# The trigger can be changed using `CREATE OR REPLACE TRIGGER` command:
-#
-#   change_trigger "users", "do_something" do |t|
-#     t.function "do_something()", from: "do_something_different()"
-#     t.for_each :row # from: :statement
-#     t.type :after, from: :before
-#     t.events %i[insert update], from: %i[insert]
-#     t.comment "Does something useful", from: ""
+# @!parse
+#   class ActiveRecord::Migration
+#     # Create a trigger for a table
+#     #
+#     # @param [#to_s] table (nil) The qualified name of the table
+#     # @param [#to_s] name (nil) The name of the trigger
+#     # @option [Boolean] :if_exists (false) Suppress the error when the trigger is absent
+#     # @yield [t] the block with the trigger's definition
+#     # @yieldparam Object receiver of methods specifying the trigger
+#     # @return [void]
+#     #
+#     # The trigger can be changed using `CREATE OR REPLACE TRIGGER` command:
+#     #
+#     #   change_trigger "users", "do_something" do |t|
+#     #     t.function "do_something()", from: "do_something_different()"
+#     #     t.for_each :row # from: :statement
+#     #     t.type :after, from: :before
+#     #     t.events %i[insert update], from: %i[insert]
+#     #     t.comment "Does something useful", from: ""
+#     #   end
+#     def create_trigger(table, name = nil, **options, &block); end
 #   end
-
 module PGTrunk::Operations::Triggers
   # @private
   class ChangeTrigger < Base

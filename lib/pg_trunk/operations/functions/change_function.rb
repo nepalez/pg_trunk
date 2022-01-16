@@ -1,52 +1,55 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#change_function(name, **options, &block)
-# Modify a function
-#
-# @param [#to_s] name (nil) The qualified name of the function
-# @option [Boolean] :if_exists (false) Suppress the error when the function is absent
-# @yield [Proc] the block with the function's definition
-# @yieldparam The receiver of methods specifying the function
-#
-# The operation changes the function without dropping it
-# (which can be necessary when there are other objects
-# using the function and you don't want to change them all).
-#
-# You can change any property except for the name
-# (use `rename_function` instead) and `language`.
-#
-#   change_function "math.mult(int, int)" do |f|
-#     f.volatility :immutable, from: :stable
-#     f.parallel :safe, from: :restricted
-#     f.security :invoker
-#     f.leakproof true
-#     f.strict true
-#     f.cost 5.0
-#     # f.rows 1 (supported for functions returning sets of rows)
-#   SQL
-#
-# The example above is not invertible because of uncertainty
-# about the previous volatility, parallelism, and cost.
-# To define them, use a from options (available in a block syntax only):
-#
-#   change_function "math.mult(a int, b int)" do |f|
-#     f.body <<~SQL, from: <<~SQL
-#       SELECT a * b;
-#     SQL
-#       SELECT min(a * b, 1);
-#     SQL
-#     f.volatility :immutable, from: :volatile
-#     f.parallel :safe, from: :unsafe
-#     f.leakproof true
-#     f.strict true
-#     f.cost 5.0, from: 100.0
-#     # f.rows 1, from: 0
-#   SQL
-#
-# Like in the other operations, the function can be
-# identified by a qualified name (with types of arguments).
-# If it has no overloaded implementations, the plain name is supported as well.
-
+# @!parse
+#   class ActiveRecord::Migration
+#     # Modify a function
+#     #
+#     # @param [#to_s] name (nil) The qualified name of the function
+#     # @option [Boolean] :if_exists (false) Suppress the error when the function is absent
+#     # @yield [f] the block with the function's definition
+#     # @yieldparam Object receiver of methods specifying the function
+#     # @return [void]
+#     #
+#     # The operation changes the function without dropping it
+#     # (which can be necessary when there are other objects
+#     # using the function and you don't want to change them all).
+#     #
+#     # You can change any property except for the name
+#     # (use `rename_function` instead) and `language`.
+#     #
+#     #   change_function "math.mult(int, int)" do |f|
+#     #     f.volatility :immutable, from: :stable
+#     #     f.parallel :safe, from: :restricted
+#     #     f.security :invoker
+#     #     f.leakproof true
+#     #     f.strict true
+#     #     f.cost 5.0
+#     #     # f.rows 1 (supported for functions returning sets of rows)
+#     #   SQL
+#     #
+#     # The example above is not invertible because of uncertainty
+#     # about the previous volatility, parallelism, and cost.
+#     # To define them, use a from options (available in a block syntax only):
+#     #
+#     #   change_function "math.mult(a int, b int)" do |f|
+#     #     f.body <<~SQL, from: <<~SQL
+#     #       SELECT a * b;
+#     #     SQL
+#     #       SELECT min(a * b, 1);
+#     #     SQL
+#     #     f.volatility :immutable, from: :volatile
+#     #     f.parallel :safe, from: :unsafe
+#     #     f.leakproof true
+#     #     f.strict true
+#     #     f.cost 5.0, from: 100.0
+#     #     # f.rows 1, from: 0
+#     #   SQL
+#     #
+#     # Like in the other operations, the function can be
+#     # identified by a qualified name (with types of arguments).
+#     # If it has no overloaded implementations, the plain name is supported as well.
+#     def change_function(name, **options, &block); end
+#   end
 module PGTrunk::Operations::Functions
   # @private
   class ChangeFunction < Base

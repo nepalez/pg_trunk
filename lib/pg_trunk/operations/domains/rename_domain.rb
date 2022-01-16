@@ -1,17 +1,20 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#rename_domain(name, to:)
-# Change the name and/or schema of a domain type
-#
-# @param [#to_s] :name (nil) The qualified name of the type
-# @option [#to_s] :to (nil) The new qualified name for the type
-#
-# A domain type can be both renamed and moved to another schema.
-#
-#   rename_domain "us_code", to: "dict.us_postal_code"
-#
-# The operation is always reversible.
-
+# @!parse
+#   class ActiveRecord::Migration
+#     # Change the name and/or schema of a domain type
+#     #
+#     # @param [#to_s] :name (nil) The qualified name of the type
+#     # @option [#to_s] :to (nil) The new qualified name for the type
+#     # @return [void]
+#     #
+#     # A domain type can be both renamed and moved to another schema.
+#     #
+#     #   rename_domain "us_code", to: "dict.us_postal_code"
+#     #
+#     # The operation is always reversible.
+#     def rename_domain(name, to:); end
+#   end
 module PGTrunk::Operations::Domains
   # @private
   class RenameDomain < Base

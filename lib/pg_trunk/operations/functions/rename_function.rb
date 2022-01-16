@@ -1,27 +1,30 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#rename_function(name, to:)
-# Change the name and/or schema of a function
-#
-# @param [#to_s] :name (nil) The qualified name of the function
-# @option [#to_s] :to (nil) The new qualified name for the function
-#
-# A function can be renamed by changing both the name
-# and the schema (namespace) it belongs to.
-#
-# If there are no overloaded functions, then you can use a plain name:
-#
-#   rename_function "math.multiply", to: "public.product"
-#
-# otherwise the types of attributes must be explicitly specified.
-#
-#   rename_function "math.multiply(int, int)", to: "public.product"
-#
-# Any specification of attributes or returned values in `to:` option
-# is ignored because they cannot be changed anyway.
-#
-# The operation is always reversible.
-
+# @!parse
+#   class ActiveRecord::Migration
+#     # Change the name and/or schema of a function
+#     #
+#     # @param [#to_s] :name (nil) The qualified name of the function
+#     # @option [#to_s] :to (nil) The new qualified name for the function
+#     # @return [void]
+#     #
+#     # A function can be renamed by changing both the name
+#     # and the schema (namespace) it belongs to.
+#     #
+#     # If there are no overloaded functions, then you can use a plain name:
+#     #
+#     #   rename_function "math.multiply", to: "public.product"
+#     #
+#     # otherwise the types of attributes must be explicitly specified.
+#     #
+#     #   rename_function "math.multiply(int, int)", to: "public.product"
+#     #
+#     # Any specification of attributes or returned values in `to:` option
+#     # is ignored because they cannot be changed anyway.
+#     #
+#     # The operation is always reversible.
+#     def rename_function(name, to:); end
+#   end
 module PGTrunk::Operations::Functions
   # @private
   class RenameFunction < Base

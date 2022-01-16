@@ -1,26 +1,29 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#create_enum(name, **options, &block)
-# Create an enumerated type by qualified name
-#
-# @param [#to_s] name (nil) The qualified name of the type
-# @option [Array<#to_s>] :values ([]) The list of values
-# @option [#to_s] :comment (nil) The comment describing the constraint
-# @yield [Proc] the block with the type's definition
-# @yieldparam The receiver of methods specifying the type
-#
-# @example
-#
-#   create_enum "finances.currency" do |e|
-#     e.values "BTC", "EUR", "GBP", "USD"
-#     e.value "JPY" # the alternative way to add a value to the tail
-#     e.comment <<~COMMENT
-#       The list of values for supported currencies.
-#     COMMENT
+# @!parse
+#   class ActiveRecord::Migration
+#     # Create an enumerated type by qualified name
+#     #
+#     # @param [#to_s] name (nil) The qualified name of the type
+#     # @option [Array<#to_s>] :values ([]) The list of values
+#     # @option [#to_s] :comment (nil) The comment describing the constraint
+#     # @yield [e] the block with the type's definition
+#     # @yieldparam Object receiver of methods specifying the type
+#     # @return [void]
+#     #
+#     # @example
+#     #
+#     #   create_enum "finances.currency" do |e|
+#     #     e.values "BTC", "EUR", "GBP", "USD"
+#     #     e.value "JPY" # the alternative way to add a value to the tail
+#     #     e.comment <<~COMMENT
+#     #       The list of values for supported currencies.
+#     #     COMMENT
+#     #   end
+#     #
+#     # It is always reversible.
+#     def create_enum(name, **options, &block); end
 #   end
-#
-# It is always reversible.
-
 module PGTrunk::Operations::Enums
   # @private
   class CreateEnum < Base

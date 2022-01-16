@@ -1,51 +1,54 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#change_procedure(name, **options, &block)
-# Modify a procedure
-#
-# @param [#to_s] name (nil) The qualified name of the procedure
-# @option [Boolean] :if_exists (false) Suppress the error when the procedure is absent
-# @yield [Proc] the block with the procedure's definition
-# @yieldparam The receiver of methods specifying the procedure
-#
-# The operation changes the procedure without dropping it
-# (which is useful when there are other objects
-# using the function and you don't want to change them all).
-#
-# You can change any property except for the name
-# (use `rename_function` instead) and `language`.
-#
-#   change_procedure "metadata.set_foo(a int)" do |p|
-#     p.body <<~SQL
-#       SET foo = a
-#     SQL
-#     p.security :invoker
-#     p.comment "Multiplies 2 integers"
-#   SQL
-#
-# The example above is not invertible because of uncertainty
-# about the previous state of body and comment.
-# To define them, use a from options (available in a block syntax only):
-#
-#   change_procedure "metadata.set_foo(a int)" do |p|
-#     p.body <<~SQL, from: <<~SQL
-#       SET foo = a
-#     SQL
-#       SET foo = -a
-#     SQL
-#     p.comment <<~MSG, from: <<~MSG
-#       Multiplies 2 integers
-#     MSG
-#       Multiplies ints
-#     MSG
-#     p.security :invoker
-#   SQL
-#
-# Like in the other operations, the procedure can be
-# identified by a qualified name (with types of arguments).
-# If it has no overloaded implementations,
-# the plain name is supported as well.
-
+# @!parse
+#   class ActiveRecord::Migration
+#     # Modify a procedure
+#     #
+#     # @param [#to_s] name (nil) The qualified name of the procedure
+#     # @option [Boolean] :if_exists (false) Suppress the error when the procedure is absent
+#     # @yield [p] the block with the procedure's definition
+#     # @yieldparam Object receiver of methods specifying the procedure
+#     # @return [void]
+#     #
+#     # The operation changes the procedure without dropping it
+#     # (which is useful when there are other objects
+#     # using the function and you don't want to change them all).
+#     #
+#     # You can change any property except for the name
+#     # (use `rename_function` instead) and `language`.
+#     #
+#     #   change_procedure "metadata.set_foo(a int)" do |p|
+#     #     p.body <<~SQL
+#     #       SET foo = a
+#     #     SQL
+#     #     p.security :invoker
+#     #     p.comment "Multiplies 2 integers"
+#     #   SQL
+#     #
+#     # The example above is not invertible because of uncertainty
+#     # about the previous state of body and comment.
+#     # To define them, use a from options (available in a block syntax only):
+#     #
+#     #   change_procedure "metadata.set_foo(a int)" do |p|
+#     #     p.body <<~SQL, from: <<~SQL
+#     #       SET foo = a
+#     #     SQL
+#     #       SET foo = -a
+#     #     SQL
+#     #     p.comment <<~MSG, from: <<~MSG
+#     #       Multiplies 2 integers
+#     #     MSG
+#     #       Multiplies ints
+#     #     MSG
+#     #     p.security :invoker
+#     #   SQL
+#     #
+#     # Like in the other operations, the procedure can be
+#     # identified by a qualified name (with types of arguments).
+#     # If it has no overloaded implementations,
+#     # the plain name is supported as well.
+#     def change_procedure(name, **options, &block); end
+#   end
 module PGTrunk::Operations::Procedures
   # @private
   class ChangeProcedure < Base

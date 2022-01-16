@@ -1,61 +1,64 @@
 # frozen_string_literal: false
 
-# @!method ActiveRecord::Migration#create_statistics(name, **options, &block)
-# Create a custom statistics
-#
-# @param [#to_s] name (nil) The qualified name of the statistics
-# @option [Boolean] :if_not_exists (false)
-#   Suppress the error when the statistics is already exist
-# @option [#to_s] table (nil)
-#   The qualified name of the table whose statistics will be collected
-# @option [Array<Symbol>] kinds ([:dependencies, :mcv, :ndistinct])
-#   The kinds of statistics to be collected (all by default).
-#   Supported values in the array: :dependencies, :mcv, :ndistinct
-# @option [#to_s] :comment The description of the statistics
-# @yield [Proc] the block with the statistics' definition
-# @yieldparam The receiver of methods specifying the statistics
-#
-# The statistics can be created with explicit name:
-#
-#   create_statistics "users_stats" do |s|
-#     s.table "users"
-#     s.columns "family", "name"
-#     s.kinds :dependencies, :mcv, :ndistinct
-#     s.comment "Statistics for users' names and families"
-#   SQL
-#
-# The name can be generated as well:
-#
-#   create_statistics do |s|
-#     s.table "users"
-#     s.columns "family", "name"
-#     s.kinds :dependencies, :mcv, :ndistinct
-#     s.comment "Statistics for users' names and families"
-#   SQL
-#
-# Since v14 PostgreSQL have supported expressions in addition to columns:
-#
-#   create_statistics "users_stats" do |s|
-#     s.table "users"
-#     s.columns "family"
-#     s.expression "length(name)"
-#     s.kinds :dependencies, :mcv, :ndistinct
-#     s.comment "Statistics for users' name lengths and families"
-#   SQL
-#
-# as well as statistics for the sole expression (kinds must be blank)
-# by columns of some table.
-#
-#   create_statistics "users_stats" do |s|
-#     s.table "users"
-#     s.expression "length(name || ' ' || family)"
-#     s.comment "Statistics for full name lengths"
-#   SQL
-#
-# Use `if_not_exists: true` to suppress error in case the statistics
-# has already been created. This option, though, makes the migration
-# irreversible due to uncertainty of the previous state of the database.
-
+# @!parse
+#   class ActiveRecord::Migration
+#     # Create a custom statistics
+#     #
+#     # @param [#to_s] name (nil) The qualified name of the statistics
+#     # @option [Boolean] :if_not_exists (false)
+#     #   Suppress the error when the statistics is already exist
+#     # @option [#to_s] table (nil)
+#     #   The qualified name of the table whose statistics will be collected
+#     # @option [Array<Symbol>] kinds ([:dependencies, :mcv, :ndistinct])
+#     #   The kinds of statistics to be collected (all by default).
+#     #   Supported values in the array: :dependencies, :mcv, :ndistinct
+#     # @option [#to_s] :comment The description of the statistics
+#     # @yield [s] the block with the statistics' definition
+#     # @yieldparam Object receiver of methods specifying the statistics
+#     # @return [void]
+#     #
+#     # The statistics can be created with explicit name:
+#     #
+#     #   create_statistics "users_stats" do |s|
+#     #     s.table "users"
+#     #     s.columns "family", "name"
+#     #     s.kinds :dependencies, :mcv, :ndistinct
+#     #     s.comment "Statistics for users' names and families"
+#     #   SQL
+#     #
+#     # The name can be generated as well:
+#     #
+#     #   create_statistics do |s|
+#     #     s.table "users"
+#     #     s.columns "family", "name"
+#     #     s.kinds :dependencies, :mcv, :ndistinct
+#     #     s.comment "Statistics for users' names and families"
+#     #   SQL
+#     #
+#     # Since v14 PostgreSQL have supported expressions in addition to columns:
+#     #
+#     #   create_statistics "users_stats" do |s|
+#     #     s.table "users"
+#     #     s.columns "family"
+#     #     s.expression "length(name)"
+#     #     s.kinds :dependencies, :mcv, :ndistinct
+#     #     s.comment "Statistics for users' name lengths and families"
+#     #   SQL
+#     #
+#     # as well as statistics for the sole expression (kinds must be blank)
+#     # by columns of some table.
+#     #
+#     #   create_statistics "users_stats" do |s|
+#     #     s.table "users"
+#     #     s.expression "length(name || ' ' || family)"
+#     #     s.comment "Statistics for full name lengths"
+#     #   SQL
+#     #
+#     # Use `if_not_exists: true` to suppress error in case the statistics
+#     # has already been created. This option, though, makes the migration
+#     # irreversible due to uncertainty of the previous state of the database.
+#     def create_statistics(name, **options, &block); end
+#   end
 module PGTrunk::Operations::Statistics
   # SQL snippet to fetch statistics in v10-13
   SQL_V10 = <<~SQL.freeze

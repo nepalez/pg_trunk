@@ -5,13 +5,13 @@
 #     # Create a view
 #     #
 #     # @param [#to_s] name (nil) The qualified name of the view
-#     # @option [Boolean] :replace_existing (false) If the view should overwrite an existing one
-#     # @option [#to_s] :sql_definition (nil) The snippet containing the query
-#     # @option [#to_i] :version (nil)
+#     # @option options [Boolean] :replace_existing (false) If the view should overwrite an existing one
+#     # @option options [#to_s] :sql_definition (nil) The snippet containing the query
+#     # @option options [#to_i] :version (nil)
 #     #   The alternative way to set sql_definition by referencing to a file containing the snippet
-#     # @option [#to_s] :check (nil) Controls the behavior of automatically updatable views
+#     # @option options [#to_s] :check (nil) Controls the behavior of automatically updatable views
 #     #   Supported values: :local, :cascaded
-#     # @option [#to_s] :comment (nil) The comment describing the view
+#     # @option options [#to_s] :comment (nil) The comment describing the view
 #     # @yield [v] the block with the view's definition
 #     # @yieldparam Object receiver of methods specifying the view
 #     # @return [void]

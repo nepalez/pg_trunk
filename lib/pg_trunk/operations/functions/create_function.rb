@@ -6,20 +6,20 @@
 #     #
 #     # @param [#to_s] name (nil)
 #     #   The qualified name of the function with arguments and returned value type
-#     # @option [Boolean] :replace_existing (false) If the function should overwrite an existing one
-#     # @option [#to_s] :language ("sql") The language (like "sql" or "plpgsql")
-#     # @option [#to_s] :body (nil) The body of the function
-#     # @option [Symbol] :volatility (:volatile) The volatility of the function.
+#     # @option options [Boolean] :replace_existing (false) If the function should overwrite an existing one
+#     # @option options [#to_s] :language ("sql") The language (like "sql" or "plpgsql")
+#     # @option options [#to_s] :body (nil) The body of the function
+#     # @option options [Symbol] :volatility (:volatile) The volatility of the function.
 #     #   Supported values: :volatile (default), :stable, :immutable
-#     # @option [Symbol] :parallel (:unsafe) The safety of parallel execution.
+#     # @option options [Symbol] :parallel (:unsafe) The safety of parallel execution.
 #     #   Supported values: :unsafe (default), :restricted, :safe
-#     # @option [Symbol] :security (:invoker) Define the role under which the function is invoked
+#     # @option options [Symbol] :security (:invoker) Define the role under which the function is invoked
 #     #   Supported values: :invoker (default), :definer
-#     # @option [Boolean] :leakproof (false) If the function is leakproof
-#     # @option [Boolean] :strict (false) If the function is strict
-#     # @option [Float] :cost (nil) The cost estimation for the function
-#     # @option [Integer] :rows (nil) The number of rows returned by a function
-#     # @option [#to_s] :comment The description of the function
+#     # @option options [Boolean] :leakproof (false) If the function is leakproof
+#     # @option options [Boolean] :strict (false) If the function is strict
+#     # @option options [Float] :cost (nil) The cost estimation for the function
+#     # @option options [Integer] :rows (nil) The number of rows returned by a function
+#     # @option options [#to_s] :comment The description of the function
 #     # @yield [f] the block with the function's definition
 #     # @yieldparam Object receiver of methods specifying the function
 #     # @return [void]

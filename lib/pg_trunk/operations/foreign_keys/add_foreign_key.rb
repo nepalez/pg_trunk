@@ -6,17 +6,17 @@
 #     #
 #     # @param [#to_s] table (nil) The qualified name of the table
 #     # @param [#to_s] reference (nil) The qualified name of the reference table
-#     # @option [#to_s] :name (nil) The current name of the foreign key
-#     # @option [#to_s] :to (nil) The new name for the foreign key
-#     # @option [Array<#to_s>] :columns ([]) The list of columns of the table
-#     # @option [#to_s] :column (nil) An alias for :columns for the case of single-column keys
-#     # @option [Array<#to_s>] :primary_key ([]) The list of columns of the reference table
-#     # @option [Symbol] :match (:full) Define how to match rows
+#     # @option options [#to_s] :name (nil) The current name of the foreign key
+#     # @option options [#to_s] :to (nil) The new name for the foreign key
+#     # @option options [Array<#to_s>] :columns ([]) The list of columns of the table
+#     # @option options [#to_s] :column (nil) An alias for :columns for the case of single-column keys
+#     # @option options [Array<#to_s>] :primary_key ([]) The list of columns of the reference table
+#     # @option options [Symbol] :match (:full) Define how to match rows
 #     #   Supported values: :full (default), :partial, :simple
-#     # @option [Symbol] :on_delete (:restrict)
+#     # @option options [Symbol] :on_delete (:restrict)
 #     #   Define how to handle the deletion of the referred row.
 #     #   Supported values: :restrict (default), :cascade, :nullify, :reset
-#     # @option [Symbol] :on_update (:restrict)
+#     # @option options [Symbol] :on_update (:restrict)
 #     #   Define how to handle the update of the referred row.
 #     #   Supported values: :restrict (default), :cascade, :nullify, :reset
 #     # @yield [k] the block with the key's definition

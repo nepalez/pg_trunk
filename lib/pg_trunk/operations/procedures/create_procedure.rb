@@ -6,12 +6,12 @@
 #     #
 #     # @param [#to_s] name (nil)
 #     #   The qualified name of the procedure with arguments and returned value type
-#     # @option [Boolean] :replace_existing (false) If the procedure should overwrite an existing one
-#     # @option [#to_s] :language ("sql") The language (like "sql" or "plpgsql")
-#     # @option [#to_s] :body (nil) The body of the procedure
-#     # @option [Symbol] :security (:invoker) Define the role under which the procedure is invoked
+#     # @option options [Boolean] :replace_existing (false) If the procedure should overwrite an existing one
+#     # @option options [#to_s] :language ("sql") The language (like "sql" or "plpgsql")
+#     # @option options [#to_s] :body (nil) The body of the procedure
+#     # @option options [Symbol] :security (:invoker) Define the role under which the procedure is invoked
 #     #   Supported values: :invoker (default), :definer
-#     # @option [#to_s] :comment The description of the procedure
+#     # @option options [#to_s] :comment The description of the procedure
 #     # @yield [p] the block with the procedure's definition
 #     # @yieldparam Object receiver of methods specifying the procedure
 #     # @return [void]

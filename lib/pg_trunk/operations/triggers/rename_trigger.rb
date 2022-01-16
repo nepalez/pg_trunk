@@ -6,16 +6,16 @@
 #     #
 #     # @param [#to_s] table (nil) The qualified name of the table
 #     # @param [#to_s] name (nil) The name of the trigger
-#     # @option [#to_s] :to (nil) The new name of the trigger
+#     # @option options [#to_s] :to (nil) The new name of the trigger
 #     # @param [#to_s] table (nil) The qualified name of the table
 #     # @param [#to_s] name (nil) The current name of the trigger
-#     # @option [#to_s] :to (nil) The new name for the trigger
-#     # @option [#to_s] :function (nil) The qualified name of the function to be called
-#     # @option [Symbol] :type (nil) When the trigger should be run
+#     # @option options [#to_s] :to (nil) The new name for the trigger
+#     # @option options [#to_s] :function (nil) The qualified name of the function to be called
+#     # @option options [Symbol] :type (nil) When the trigger should be run
 #     #   Supported values: :before, :after, :instead_of
-#     # @option [Array<Symbol>] :events List of events running the trigger
+#     # @option options [Array<Symbol>] :events List of events running the trigger
 #     #   Supported values in the array: :insert, :update, :delete, :truncate
-#     # @option [Symbol] :for_each (:statement) Define if a trigger should be run for every row
+#     # @option options [Symbol] :for_each (:statement) Define if a trigger should be run for every row
 #     #   Supported values: :statement (default), :row
 #     # @yield [t] the block with the trigger's definition
 #     # @yieldparam Object receiver of methods specifying the trigger

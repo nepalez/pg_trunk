@@ -5,7 +5,7 @@
 #     # Modify a view
 #     #
 #     # @param [#to_s] name (nil) The qualified name of the view
-#     # @option [Boolean] :if_exists (false) Suppress the error when the view is absent
+#     # @option options [Boolean] :if_exists (false) Suppress the error when the view is absent
 #     # @yield [v] the block with the view's definition
 #     # @yieldparam Object receiver of methods specifying the view
 #     # @return [void]

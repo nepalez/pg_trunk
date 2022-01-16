@@ -5,12 +5,12 @@
 #     # Drop a domain type by qualified name
 #     #
 #     # @param [#to_s] name (nil) The qualified name of the type
-#     # @option [Boolean] :if_exists (false) Suppress the error when the type is absent
-#     # @option [Symbol] :force (:restrict) How to process dependent objects (`:cascade` or `:restrict`)
-#     # @option [#to_s] :as (nil) The base type for the domain (alias: :type)
-#     # @option [#to_s] :collation (nil) The collation
-#     # @option [#to_s] :default_sql (nil) The snippet for the default value of the domain
-#     # @option [#to_s] :comment (nil) The comment describing the constraint
+#     # @option options [Boolean] :if_exists (false) Suppress the error when the type is absent
+#     # @option options [Symbol] :force (:restrict) How to process dependent objects (`:cascade` or `:restrict`)
+#     # @option options [#to_s] :as (nil) The base type for the domain (alias: :type)
+#     # @option options [#to_s] :collation (nil) The collation
+#     # @option options [#to_s] :default_sql (nil) The snippet for the default value of the domain
+#     # @option options [#to_s] :comment (nil) The comment describing the constraint
 #     # @yield [d] the block with the type's definition
 #     # @yieldparam Object receiver of methods specifying the type
 #     # @return [void]

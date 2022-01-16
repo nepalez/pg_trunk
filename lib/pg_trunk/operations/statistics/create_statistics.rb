@@ -5,14 +5,14 @@
 #     # Create a custom statistics
 #     #
 #     # @param [#to_s] name (nil) The qualified name of the statistics
-#     # @option [Boolean] :if_not_exists (false)
+#     # @option options [Boolean] :if_not_exists (false)
 #     #   Suppress the error when the statistics is already exist
-#     # @option [#to_s] table (nil)
+#     # @option options [#to_s] table (nil)
 #     #   The qualified name of the table whose statistics will be collected
-#     # @option [Array<Symbol>] kinds ([:dependencies, :mcv, :ndistinct])
+#     # @option options [Array<Symbol>] kinds ([:dependencies, :mcv, :ndistinct])
 #     #   The kinds of statistics to be collected (all by default).
 #     #   Supported values in the array: :dependencies, :mcv, :ndistinct
-#     # @option [#to_s] :comment The description of the statistics
+#     # @option options [#to_s] :comment The description of the statistics
 #     # @yield [s] the block with the statistics' definition
 #     # @yieldparam Object receiver of methods specifying the statistics
 #     # @return [void]

@@ -5,7 +5,7 @@
 #     # Modify a function
 #     #
 #     # @param [#to_s] name (nil) The qualified name of the function
-#     # @option [Boolean] :if_exists (false) Suppress the error when the function is absent
+#     # @option options [Boolean] :if_exists (false) Suppress the error when the function is absent
 #     # @yield [f] the block with the function's definition
 #     # @yieldparam Object receiver of methods specifying the function
 #     # @return [void]

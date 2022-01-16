@@ -5,8 +5,8 @@
 #     # Refresh a materialized view
 #     #
 #     # @param [#to_s] name (nil) The qualified name of the view
-#     # @option [Boolean] :with_data (true) If the view should be populated after creation
-#     # @option [Symbol] :algorithm (nil) Makes the operation concurrent when set to :concurrently
+#     # @option options [Boolean] :with_data (true) If the view should be populated after creation
+#     # @option options [Symbol] :algorithm (nil) Makes the operation concurrent when set to :concurrently
 #     # @return [void]
 #     #
 #     # The operation enables refreshing a materialized view

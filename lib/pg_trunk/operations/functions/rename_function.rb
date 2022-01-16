@@ -5,7 +5,7 @@
 #     # Change the name and/or schema of a function
 #     #
 #     # @param [#to_s] :name (nil) The qualified name of the function
-#     # @option [#to_s] :to (nil) The new qualified name for the function
+#     # @option options [#to_s] :to (nil) The new qualified name for the function
 #     # @return [void]
 #     #
 #     # A function can be renamed by changing both the name

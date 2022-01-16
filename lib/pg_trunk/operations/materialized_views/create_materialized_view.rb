@@ -5,13 +5,13 @@
 #     # Create a materialized view
 #     #
 #     # @param [#to_s] name (nil) The qualified name of the view
-#     # @option [Boolean] :if_not_exists (false) Suppress the error when a view has been already created
-#     # @option [#to_s] :sql_definition (nil) The snippet containing the query
-#     # @option [#to_i] :version (nil)
+#     # @option options [Boolean] :if_not_exists (false) Suppress the error when a view has been already created
+#     # @option options [#to_s] :sql_definition (nil) The snippet containing the query
+#     # @option options [#to_i] :version (nil)
 #     #   The alternative way to set sql_definition by referencing to a file containing the snippet
-#     # @option [#to_s] :tablespace (nil) The tablespace for the view
-#     # @option [Boolean] :with_data (true) If the view should be populated after creation
-#     # @option [#to_s] :comment (nil) The comment describing the view
+#     # @option options [#to_s] :tablespace (nil) The tablespace for the view
+#     # @option options [Boolean] :with_data (true) If the view should be populated after creation
+#     # @option options [#to_s] :comment (nil) The comment describing the view
 #     # @yield [v] the block with the view's definition
 #     # @yieldparam Object receiver of methods specifying the view
 #     # @return [void]

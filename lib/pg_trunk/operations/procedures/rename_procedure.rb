@@ -5,7 +5,7 @@
 #     # Change the name and/or schema of a procedure
 #     #
 #     # @param [#to_s] :name (nil) The qualified name of the procedure
-#     # @option [#to_s] :to (nil) The new qualified name for the procedure
+#     # @option options [#to_s] :to (nil) The new qualified name for the procedure
 #     # @return [void]
 #     #
 #     # A procedure can be renamed by changing both the name

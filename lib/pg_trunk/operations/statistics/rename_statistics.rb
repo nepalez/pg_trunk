@@ -5,7 +5,7 @@
 #     # Change the name and/or schema of a statistics
 #     #
 #     # @param [#to_s] :name (nil) The qualified name of the statistics
-#     # @option [#to_s] :to (nil) The new qualified name for the statistics
+#     # @option options [#to_s] :to (nil) The new qualified name for the statistics
 #     # @return [void]
 #     #
 #     # A custom statistics can be renamed by changing both the name

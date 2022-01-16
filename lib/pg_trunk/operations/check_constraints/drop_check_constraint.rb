@@ -6,10 +6,10 @@
 #     #
 #     # @param [#to_s] table (nil) The qualified name of the table
 #     # @param [#to_s] expression (nil) The SQL expression
-#     # @option [Boolean] :if_exists (false) Suppress the error when the constraint is absent
-#     # @option [#to_s] :name (nil) The optional name of the constraint
-#     # @option [Boolean] :inherit (true) If the constraint should be inherited by subtables
-#     # @option [#to_s] :comment (nil) The comment describing the constraint
+#     # @option options [Boolean] :if_exists (false) Suppress the error when the constraint is absent
+#     # @option options [#to_s] :name (nil) The optional name of the constraint
+#     # @option options [Boolean] :inherit (true) If the constraint should be inherited by subtables
+#     # @option options [#to_s] :comment (nil) The comment describing the constraint
 #     # @yield [c] the block with the constraint's definition
 #     # @yieldparam Object receiver of methods specifying the constraint
 #     # @return [void]

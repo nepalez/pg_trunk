@@ -5,8 +5,8 @@
 #     # Change the name and/or schema of a view
 #     #
 #     # @param [#to_s] :name (nil) The qualified name of the view
-#     # @option [#to_s] :to (nil) The new qualified name for the view
-#     # @option [Boolean] :if_exists (false) Suppress the error when the view is absent
+#     # @option options [#to_s] :to (nil) The new qualified name for the view
+#     # @option options [Boolean] :if_exists (false) Suppress the error when the view is absent
 #     # @return [void]
 #     #
 #     # A view can be renamed by changing both the name

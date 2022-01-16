@@ -5,7 +5,7 @@
 #     # Create a composite type
 #     #
 #     # @param [#to_s] name (nil) The qualified name of the type
-#     # @option [#to_s] :comment (nil) The comment describing the constraint
+#     # @option options [#to_s] :comment (nil) The comment describing the constraint
 #     # @yield [t] the block with the type's definition
 #     # @yieldparam Object receiver of methods specifying the type
 #     # @return [void]

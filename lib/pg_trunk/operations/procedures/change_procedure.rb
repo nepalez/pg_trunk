@@ -5,7 +5,7 @@
 #     # Modify a procedure
 #     #
 #     # @param [#to_s] name (nil) The qualified name of the procedure
-#     # @option [Boolean] :if_exists (false) Suppress the error when the procedure is absent
+#     # @option options [Boolean] :if_exists (false) Suppress the error when the procedure is absent
 #     # @yield [p] the block with the procedure's definition
 #     # @yieldparam Object receiver of methods specifying the procedure
 #     # @return [void]

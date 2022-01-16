@@ -5,10 +5,10 @@
 #     # Drop an enumerated type by qualified name
 #     #
 #     # @param [#to_s] name (nil) The qualified name of the type
-#     # @option [Boolean] :if_exists (false) Suppress the error when the type is absent
-#     # @option [Symbol] :force (:restrict) How to process dependent objects (`:cascade` or `:restrict`)
-#     # @option [Array<#to_s>] :values ([]) The list of values
-#     # @option [#to_s] :comment (nil) The comment describing the constraint
+#     # @option options [Boolean] :if_exists (false) Suppress the error when the type is absent
+#     # @option options [Symbol] :force (:restrict) How to process dependent objects (`:cascade` or `:restrict`)
+#     # @option options [Array<#to_s>] :values ([]) The list of values
+#     # @option options [#to_s] :comment (nil) The comment describing the constraint
 #     # @yield [e] the block with the type's definition
 #     # @yieldparam Object receiver of methods specifying the type
 #     # @return [void]

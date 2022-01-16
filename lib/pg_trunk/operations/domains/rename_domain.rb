@@ -5,7 +5,7 @@
 #     # Change the name and/or schema of a domain type
 #     #
 #     # @param [#to_s] :name (nil) The qualified name of the type
-#     # @option [#to_s] :to (nil) The new qualified name for the type
+#     # @option options [#to_s] :to (nil) The new qualified name for the type
 #     # @return [void]
 #     #
 #     # A domain type can be both renamed and moved to another schema.

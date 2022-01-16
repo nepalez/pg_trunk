@@ -6,7 +6,7 @@
 #     #
 #     # @param [#to_s] table (nil) The qualified name of the table
 #     # @param [#to_s] name (nil) The name of the trigger
-#     # @option [Boolean] :if_exists (false) Suppress the error when the trigger is absent
+#     # @option options [Boolean] :if_exists (false) Suppress the error when the trigger is absent
 #     # @yield [t] the block with the trigger's definition
 #     # @yieldparam Object receiver of methods specifying the trigger
 #     # @return [void]

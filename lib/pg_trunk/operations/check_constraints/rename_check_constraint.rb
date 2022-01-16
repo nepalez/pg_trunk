@@ -6,8 +6,8 @@
 #     #
 #     # @param [#to_s] table (nil) The qualified name of the table
 #     # @param [#to_s] expression (nil) The SQL expression
-#     # @option [#to_s] :name (nil) The current name of the constraint
-#     # @option [#to_s] :to (nil) The new name for the constraint
+#     # @option options [#to_s] :name (nil) The current name of the constraint
+#     # @option options [#to_s] :to (nil) The new name for the constraint
 #     # @yield [c] the block with the constraint's definition
 #     # @yieldparam Object receiver of methods specifying the constraint
 #     # @return [void]

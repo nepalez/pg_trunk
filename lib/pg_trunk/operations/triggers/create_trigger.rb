@@ -6,19 +6,19 @@
 #     #
 #     # @param [#to_s] table (nil) The qualified name of the table
 #     # @param [#to_s] name (nil) The name of the trigger
-#     # @option [Boolean] :replace_existing (false) If the trigger should overwrite an existing one
-#     # @option [#to_s] :function (nil) The qualified name of the function to be called
-#     # @option [Symbol] :type (nil) When the trigger should be run
+#     # @option options [Boolean] :replace_existing (false) If the trigger should overwrite an existing one
+#     # @option options [#to_s] :function (nil) The qualified name of the function to be called
+#     # @option options [Symbol] :type (nil) When the trigger should be run
 #     #   Supported values: :before, :after, :instead_of
-#     # @option [Array<Symbol>] :events List of events running the trigger
+#     # @option options [Array<Symbol>] :events List of events running the trigger
 #     #   Supported values in the array: :insert, :update, :delete, :truncate
-#     # @option [Boolean] :constraint (false) If the trigger is a constraint
-#     # @option [Symbol] :initially (:immediate) If the constraint check should be deferred
+#     # @option options [Boolean] :constraint (false) If the trigger is a constraint
+#     # @option options [Symbol] :initially (:immediate) If the constraint check should be deferred
 #     #   Supported values: :immediate (default), :deferred
-#     # @option [#to_s] :when (nil) The SQL snippet definiing a condition for the trigger
-#     # @option [Symbol] :for_each (:statement) Define if a trigger should be run for every row
+#     # @option options [#to_s] :when (nil) The SQL snippet definiing a condition for the trigger
+#     # @option options [Symbol] :for_each (:statement) Define if a trigger should be run for every row
 #     #   Supported values: :statement (default), :row
-#     # @option [#to_s] :comment (nil) The commend describing the trigger
+#     # @option options [#to_s] :comment (nil) The commend describing the trigger
 #     # @yield [t] the block with the trigger's definition
 #     # @yieldparam Object receiver of methods specifying the trigger
 #     # @return [void]

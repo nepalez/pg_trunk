@@ -58,25 +58,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Install dependent libraries
+        run: sudo apt-get install libpq-dev
+
       - name: Install Ruby ${{ matrix.ruby }}
         uses: ruby/setup-ruby@v1.61.1
         with:
           ruby-version: ${{ matrix.ruby }}
-
-      - name: Install dependent libraries
-        run: sudo apt-get install libpq-dev
-
-      - name: Generate lockfile
-        run: bundle lock
-
-      - name: Cache dependencies
-        uses: actions/cache@v1
-        with:
-          path: vendor/bundle
-          key: bundle-${{ hashFiles('Gemfile.lock') }}
-
-      - name: Set up PGTrunk
-        run: bin/setup
+          bundler-cache: true 'bundle install' and cache
 
       - name: Check code style
         run: bundle exec rubocop

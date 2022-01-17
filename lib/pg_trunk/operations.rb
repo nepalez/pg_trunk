@@ -18,6 +18,7 @@ module PGTrunk
     require_relative "operations/foreign_keys"
     require_relative "operations/procedures"
     require_relative "operations/triggers"
+    require_relative "operations/rules"
     require_relative "operations/statistics"
   end
 end

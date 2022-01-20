@@ -72,6 +72,7 @@ As of today we support creation, modification and dropping the following objects
 - enumerable types
 - composite types
 - domains types
+- rules
 
 For `tables` and `indexes` we reuse the ActiveRecord's native methods.
 For `check constraints` and `foreign keys` we support both the native definitions inside the table

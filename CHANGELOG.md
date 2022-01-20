@@ -4,6 +4,12 @@ The noteworthy changes for each PGTrunk version are included here.
 The format is based on [Keep a Changelog] and this project adheres to [Semantic Versioning].
 For a complete changelog, see the [commits] for each version via the version links.
 
+## [0.1.3] (2022-01-20)
+
+* Add support for rules (nepalez)
+* Fix CI/CD flow (olleolleolle)
+* Fix documentation (nepalez)
+
 ## [0.1.2] (2022-01-17)
 
 * Fix registry of custom types (nepalez)

@@ -4,6 +4,12 @@ The noteworthy changes for each PGTrunk version are included here.
 The format is based on [Keep a Changelog] and this project adheres to [Semantic Versioning].
 For a complete changelog, see the [commits] for each version via the version links.
 
+## [0.2.0] (2022-01-26)
+
+* Add support for sequences (nepalez)
+* Fix inheritance of attribute aliases (nepalez)
+* Fix documentation for rules (nepalez)
+
 ## [0.1.3] (2022-01-20)
 
 * Add support for rules (nepalez)

@@ -9,6 +9,7 @@ module PGTrunk
     require_relative "operations/enums"
     require_relative "operations/composite_types"
     require_relative "operations/domains"
+    require_relative "operations/sequences"
     require_relative "operations/tables"
     require_relative "operations/views"
     require_relative "operations/materialized_views"

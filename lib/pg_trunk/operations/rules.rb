@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # nodoc
-module PGTrunk::Rules
+module PGTrunk::Operations
   # @private
   # Namespace for operations with rules
   module Rules

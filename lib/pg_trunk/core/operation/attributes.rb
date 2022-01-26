@@ -51,7 +51,7 @@ class PGTrunk::Operation
       end
 
       def inherited(klass)
-        klass.instance_variable_set(:@attr_aliases, attr_aliases)
+        klass.instance_variable_set(:@attr_aliases, attr_aliases.dup)
         super
       end
     end

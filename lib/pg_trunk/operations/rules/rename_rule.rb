@@ -11,7 +11,7 @@
 #     # @yieldparam Object receiver of methods specifying the constraint
 #     # @return [void]
 #     #
-#     # A constraint can be identified by the table and explicit name
+#     # A rule can be identified by the table and explicit name
 #     #
 #     # ```ruby
 #     # rename_rule :users, "_forbid_insertion", to: "_skip_insertion"

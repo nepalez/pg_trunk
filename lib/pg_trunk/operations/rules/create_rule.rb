@@ -14,7 +14,7 @@
 #     # @option options [String] :where (nil) The condition (SQL) for the rule to be applied.
 #     # @option options [String] :command (nil) The SQL command to be added by the rule.
 #     # @yield [r] the block with the rule's definition
-#     # @yieldparam Object receiver of methods specifying the procedure
+#     # @yieldparam Object receiver of methods specifying the rule
 #     # @return [void]
 #     #
 #     # @notice `SELECT` rules are not supported by the gem.

@@ -23,7 +23,7 @@ module PGTrunk::Operations::Rules
     validates :kind, inclusion: { in: %i[instead also] }, allow_nil: true
     validates :event, inclusion: { in: %i[insert update delete] }, allow_nil: true
 
-    # By default foreign keys are sorted by tables and names.
+    # By default rules are sorted by tables and names.
     def <=>(other)
       return unless other.is_a?(self.class)
 

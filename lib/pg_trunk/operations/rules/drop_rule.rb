@@ -16,7 +16,7 @@
 #     # @option options [String] :where (nil) The condition (SQL) for the rule to be applied.
 #     # @option options [String] :command (nil) The SQL command to be added by the rule.
 #     # @yield [r] the block with the rule's definition
-#     # @yieldparam Object receiver of methods specifying the procedure
+#     # @yieldparam Object receiver of methods specifying the rule
 #     # @return [void]
 #     #
 #     # The rule can be identified by the table and explicit name
@@ -59,7 +59,7 @@
 #     # ```
 #     #
 #     # With the `force: :cascade` option the operation would remove
-#     # all the objects that use the type.
+#     # all the objects that use the rule.
 #     #
 #     # ```ruby
 #     # drop_rule :users, force: :cascade do |r|
